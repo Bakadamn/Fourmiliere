@@ -10,17 +10,36 @@ namespace Fourmiliere
     {
         static void Main(string[] args)
         {
-            int cpt = 0;
+            
             string affichage = "";
-            for (int i = 0; i < Tableau.tableau.GetLength(0); i++)
+            Tableau tab = new Tableau(20,20);
+            tab.InitialisationTableau();
+            tab.InitNid();
+            tab.InitCailloux(20);
+            Console.BackgroundColor = ConsoleColor.Red;
+            
+            for (int i = 0; i < tab.tableau.GetLength(0); i++)
             {
-                for (int y = 0; y < Tableau.tableau.GetLength(1); y++)
+                for (int y = 0; y < tab.tableau.GetLength(1); y++)
                 {
-                    affichage += "0 ";
+                    string aff = "";
+                    if (tab.tableau[i,y].contenu=='F')
+                    {
+                        aff = tab.tableau[i, y].pheromone_nid.ToString();
+                    }
+                    else
+                    {
+                        affichage += tab.tableau[i, y].contenu ;
+                    }
+
+                    affichage += aff ;
+                    
                     
                 }
                 affichage += "\n";
             }
+
+
             Console.WriteLine(affichage);
             Console.ReadKey();
         }
