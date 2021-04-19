@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Fourmiliere
 {
-    class Fourmis
+    public class Fourmis
     {
         public bool porte_sucre;
     }
