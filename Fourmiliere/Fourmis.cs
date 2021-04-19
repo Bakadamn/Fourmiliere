@@ -6,8 +6,16 @@ using System.Threading.Tasks;
 
 namespace Fourmiliere
 {
-    class Fourmis
+     public class Fourmis
     {
         public bool porte_sucre;
+        public static int nb_fourmis;
+
+        public Fourmis()
+        {
+            porte_sucre = false;
+            nb_fourmis = 0;
+            
+        }
     }
 }

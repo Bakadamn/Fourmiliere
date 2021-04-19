@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Fourmiliere
 {
-    class Case
+    public class Case
     {
         public char contenu;
         public int nombre_sucre;
