@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Fourmiliere
 {
-    public class Fourmis
+    public class Tableau
     {
-        public bool porte_sucre;
+        public static Case[,] tableau = new Case[20,20];
+
+
     }
 }

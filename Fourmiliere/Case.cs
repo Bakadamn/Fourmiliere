@@ -12,6 +12,7 @@ namespace Fourmiliere
         public int nombre_sucre;
         public int pheromone_nid;
         public int pheromone_sucre;
+        public Fourmis fourmis;
         
     }
 }
