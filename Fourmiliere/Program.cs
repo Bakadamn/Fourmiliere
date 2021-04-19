@@ -10,9 +10,7 @@ namespace Fourmiliere
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("ahahah");
-
-            
+           
         }
     }
 }
