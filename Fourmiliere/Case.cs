@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Fourmiliere
 {
-    class Program
+    class Case
     {
-        static void Main(string[] args)
-        {
-           
-        }
+        public char contenu;
+        public int nombre_sucre;
+        public int pheromone_nid;
+        public int pheromone_sucre;
+        
     }
 }

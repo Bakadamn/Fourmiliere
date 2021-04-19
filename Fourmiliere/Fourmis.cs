@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace Fourmiliere
 {
-    class Program
+    class Fourmis
     {
-        static void Main(string[] args)
-        {
-           
-        }
+        public bool porte_sucre;
     }
 }
