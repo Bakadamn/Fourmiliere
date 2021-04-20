@@ -19,6 +19,8 @@ namespace Fourmiliere
         public Case(int x, int y)
         {
             contenu = '0';
+            X = x;
+            Y = y;
         }
     }
 }

@@ -8,11 +8,11 @@ namespace Fourmiliere
 {
     public class Tableau
     {
-        public Case[,] tableau;
+        public static Case[,] tableau;
         Random rnd = new Random();
         int[] posNid = new int[2];
 
-
+      
         public Tableau()
         {
             tableau = new Case[20, 20];
@@ -176,6 +176,7 @@ namespace Fourmiliere
                 if(tableau[possibilite[0], possibilite[1]].fourmis==null)
                 {
                     tableau[possibilite[0], possibilite[1]].fourmis = new Fourmis(tableau[possibilite[0], possibilite[1]]);
+                    //mettre un ptit random
                     return;
                 }
 
