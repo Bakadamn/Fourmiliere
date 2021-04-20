@@ -8,6 +8,18 @@ namespace Fourmiliere
 {
     public class Fourmis
     {
-        public bool porte_sucre;
+        
+        public bool porteSucre;
+
+        private bool chercheSucre;
+        private bool chercheNid;
+
+        public Fourmis()
+        {
+            porteSucre = false;
+            chercheSucre = true;
+        }
+
+
     }
 }

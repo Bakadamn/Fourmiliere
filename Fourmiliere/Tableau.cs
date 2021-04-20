@@ -10,6 +10,8 @@ namespace Fourmiliere
     {
         public Case[,] tableau;
         Random rnd = new Random();
+        int[] posNid = new int[2];
+
 
         public Tableau()
         {
@@ -55,6 +57,9 @@ namespace Fourmiliere
             tableau[rndX +1, rndY].contenu = 'N';
             tableau[rndX, rndY + 1].contenu = 'N';
             tableau[rndX + 1, rndY + 1].contenu = 'N';
+
+            posNid[0] =  rndX;
+            posNid[1] =  rndY;
 
            // InitPhero(rndX, rndY);
         }
@@ -105,17 +110,7 @@ namespace Fourmiliere
         } */
 
 
-        private bool EstDansLeTableau(int valeur, int dimension)
-        {
-            if(valeur<tableau.GetLength(dimension) && valeur >= 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+    
         public void InitSucre(int NbrSucre)
         {
             int rndX = 0;
@@ -156,6 +151,12 @@ namespace Fourmiliere
             }
         }
 
+
+        public void InitFourmis(int fourmis)
+        {
+
+        }
+
         private bool CaseEstVide(Case ca)
         {
             if (ca.contenu == '0')
@@ -165,6 +166,16 @@ namespace Fourmiliere
             else
                 return false;
         }
-
+        private bool EstDansLeTableau(int valeur, int dimension)
+        {
+            if (valeur < tableau.GetLength(dimension) && valeur >= 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Fourmiliere
 {
@@ -42,7 +38,7 @@ namespace Fourmiliere
             }
 
 
-                Console.WriteLine(affichage);
+            Console.WriteLine(affichage);
             Console.ReadKey();
         }
     }
