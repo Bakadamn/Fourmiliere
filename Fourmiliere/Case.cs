@@ -13,12 +13,14 @@ namespace Fourmiliere
         public int pheromone_nid;
         public int pheromone_sucre;
         public Fourmis fourmis;
-        
+        public int X;
+        public int Y;
 
-        
-        public Case()
+        public Case(int x, int y)
         {
             contenu = '0';
+            X = x;
+            Y = y;
         }
     }
 }

@@ -6,23 +6,19 @@ using System.Threading.Tasks;
 
 namespace Fourmiliere
 {
-    class Tour
+    public static class Tour
     {
-        private Tableau map;
-        public Tour(Tableau tab)
-        {
-            map = tab;
-        }
-        
-        public void TourDeJeu()
+
+        public static void TourDeJeu()
         {
             while(MapContientSucre())
             {
-                foreach(Case ca in map.tableau)
+                foreach(Case ca in Tableau.tableau)
                 {
                     if(ca.fourmis!=null)
                     {
                         //méthode fourmis
+                        ca.fourmis.DeplacementAleatoire(ca);
                     }
                 }
             }
@@ -30,10 +26,11 @@ namespace Fourmiliere
 
 
 
-        private bool MapContientSucre()
+
+        private static bool MapContientSucre()
         {
             
-            foreach(Case ca in map.tableau)
+            foreach(Case ca in Tableau.tableau)
             {
                 if(ca.nombre_sucre > 0)
                 {

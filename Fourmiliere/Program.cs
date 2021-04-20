@@ -8,26 +8,32 @@ namespace Fourmiliere
         {
             
             string affichage = "";
-            Tableau tab = new Tableau(50,50);
+            Tableau tab = new Tableau(20,20);
             tab.InitialisationTableau();
             tab.InitNid();
             tab.InitSucre(5);
             tab.InitCailloux(20);
+            tab.InitFourmis(1);
             Console.BackgroundColor = ConsoleColor.White ;
             Console.ForegroundColor = ConsoleColor.Black;
             
-            for (int i = 0; i < tab.tableau.GetLength(0); i++)
+            for (int i = 0; i < Tableau.tableau.GetLength(0); i++)
             {
-                for (int y = 0; y < tab.tableau.GetLength(1); y++)
+                for (int y = 0; y < Tableau.tableau.GetLength(1); y++)
                 {
                     string aff = "";
-                    if (tab.tableau[i,y].contenu=='F')
+                    if (Tableau.tableau[i,y].contenu=='0')
                     {
-                        aff = tab.tableau[i, y].pheromone_nid.ToString();
+                        if(Tableau.tableau[i,y].fourmis!=null)
+                        {
+                            aff = "F";
+                        }
+                        else
+                        aff = Tableau.tableau[i, y].pheromone_nid.ToString();
                     }
                     else
                     {
-                        affichage += tab.tableau[i, y].contenu ;
+                        affichage += Tableau.tableau[i, y].contenu ;
                     }
 
                     affichage += aff ;
@@ -36,9 +42,11 @@ namespace Fourmiliere
                 }
                 affichage += "\n";
             }
-
-
             Console.WriteLine(affichage);
+            Console.ReadKey();
+            Tour.TourDeJeu();
+            Console.WriteLine(affichage);
+
             Console.ReadKey();
         }
     }

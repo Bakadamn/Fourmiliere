@@ -8,11 +8,11 @@ namespace Fourmiliere
 {
     public class Tableau
     {
-        public Case[,] tableau;
+        public static Case[,] tableau;
         Random rnd = new Random();
         int[] posNid = new int[2];
 
-
+      
         public Tableau()
         {
             tableau = new Case[20, 20];
@@ -30,7 +30,7 @@ namespace Fourmiliere
             {
                 for (int y = 0; y < tableau.GetLength(1); y++)
                 {
-                    Case caseTab = new Case();
+                    Case caseTab = new Case(i, y);
                     tableau[i, y] = caseTab;
                 }
               
@@ -154,7 +154,42 @@ namespace Fourmiliere
 
         public void InitFourmis(int fourmis)
         {
+            List<int[]> posPossible = new List<int[]>();
+            
+            if (EstDansLeTableau(posNid[0]-1, 0) && (EstDansLeTableau(posNid[1] -1, 0)))
+            {
+                
+                posPossible.Add(DeuxValeurEnTableau(posNid[0] - 1, posNid[1] - 1));
+                posPossible.Add(DeuxValeurEnTableau(posNid[0] +2, posNid[1] +2));
+                for (int i = 1; i<4; i ++)
+                {
+                    posPossible.Add(DeuxValeurEnTableau(posNid[0] - 1 + i, posNid[1] - 1));
+                    posPossible.Add(DeuxValeurEnTableau(posNid[0] - 1 , posNid[1] - 1 + i ));
 
+                    posPossible.Add(DeuxValeurEnTableau(posNid[0] + 2 - i, posNid[1] + 2));
+                    posPossible.Add(DeuxValeurEnTableau(posNid[0] + 2, posNid[1] + 2 - i));
+                }
+            }
+
+            foreach(int[] possibilite in posPossible)
+            {
+                if(tableau[possibilite[0], possibilite[1]].fourmis==null)
+                {
+                    tableau[possibilite[0], possibilite[1]].fourmis = new Fourmis(tableau[possibilite[0], possibilite[1]]);
+                    //mettre un ptit random
+                    return;
+                }
+
+            }
+        }
+
+        private int[] DeuxValeurEnTableau(int une, int deux)
+        {
+            int[] instance = new int[2];
+            instance[0] = une;
+            instance[1] = deux;
+
+            return instance;
         }
 
         private bool CaseEstVide(Case ca)
