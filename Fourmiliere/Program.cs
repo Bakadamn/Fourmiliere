@@ -13,6 +13,7 @@ namespace Fourmiliere
             tab.InitNid();
             tab.InitSucre(5);
             tab.InitCailloux(20);
+            tab.InitFourmis(1);
             Console.BackgroundColor = ConsoleColor.White ;
             Console.ForegroundColor = ConsoleColor.Black;
             
