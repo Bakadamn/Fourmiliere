@@ -18,6 +18,7 @@ namespace Fourmiliere
         {
             porteSucre = false;
             chercheSucre = true;
+            basto;
         }
 
 
