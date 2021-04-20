@@ -32,6 +32,7 @@ namespace Fourmiliere
                 {
                     Case caseTab = new Case();
                     tableau[i, y] = caseTab;
+                    
                 }
               
             }
