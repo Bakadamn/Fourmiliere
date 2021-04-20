@@ -13,12 +13,19 @@ namespace Fourmiliere
 
         private bool chercheSucre;
         private bool chercheNid;
+        public Case caseFourmis;
 
-        public Fourmis()
+        public Fourmis(Case ca)
         {
+            caseFourmis = ca;
             porteSucre = false;
             chercheSucre = true;
-            basto;
+        }
+        
+        public void DeplacerFourmis(Case c1, Case c2) 
+        {
+            c1.fourmis = null;
+            c2.fourmis = this;
         }
 
 
