@@ -12,11 +12,13 @@ namespace Fourmiliere
         {
             
             string affichage = "";
-            Tableau tab = new Tableau(20,20);
+            Tableau tab = new Tableau(50,50);
             tab.InitialisationTableau();
             tab.InitNid();
+            tab.InitSucre(5);
             tab.InitCailloux(20);
-            Console.BackgroundColor = ConsoleColor.Red;
+            Console.BackgroundColor = ConsoleColor.White ;
+            Console.ForegroundColor = ConsoleColor.Black;
             
             for (int i = 0; i < tab.tableau.GetLength(0); i++)
             {
@@ -40,7 +42,7 @@ namespace Fourmiliere
             }
 
 
-            Console.WriteLine(affichage);
+                Console.WriteLine(affichage);
             Console.ReadKey();
         }
     }

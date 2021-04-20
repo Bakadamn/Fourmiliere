@@ -10,13 +10,15 @@ namespace Fourmiliere
     {
         public char contenu;
         public int nombre_sucre;
-        public int pheromone_nid ;
+        public int pheromone_nid;
         public int pheromone_sucre;
         public Fourmis fourmis;
         
+
+        
         public Case()
         {
-            contenu = 'F';
+            contenu = '0';
         }
     }
 }
