@@ -30,7 +30,7 @@ namespace Fourmiliere
 
         public static bool CaseEstVide(Case ca) //verifie si la case ne contient pas d'element (cailloux, sucre, nid)
         {
-            if (ca.contenu == '0')          //marche pas tout le temps u_u avec les 'C' uniquement?
+            if (ca.contenu == '0')          
             {
                 return true;
             }
