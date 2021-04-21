@@ -11,11 +11,11 @@ namespace Fourmiliere
 
 
             string affichage = "";
-            Tableau tab = new Tableau(20, 20);
+            Tableau tab = new Tableau(12, 12);
             tab.InitialisationTableau();
             tab.InitNid();
-            tab.InitSucre(5);
-            tab.InitCailloux(20);
+            tab.InitSucre(2);
+            tab.InitCailloux(2);
             tab.InitFourmis(1);
             tab.InitFourmis(1);
             tab.InitFourmis(1);
@@ -23,11 +23,11 @@ namespace Fourmiliere
 
             affichage = affichGrille(affichage);
             Console.WriteLine(affichage);
+            Console.WriteLine();
             Console.ReadKey();
+            FichierTxt.creationFichierTxt();
             Tour.TourDeJeu();
-
-
-            Console.ReadKey();
+           
         }
 
         public static string affichGrille(string affichage)

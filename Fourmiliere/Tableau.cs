@@ -11,16 +11,22 @@ namespace Fourmiliere
         public static Case[,] tableau;
         Random rnd = new Random();
         int[] posNid = new int[2];
+        public int largeur;
+        public int hauteur;
 
       
         public Tableau()
         {
             tableau = new Case[20, 20];
+            largeur = 20;
+            hauteur = 20;
         }
 
         public Tableau(int X, int Y)
         {
             tableau = new Case[X, Y];
+            largeur = X;
+            hauteur = Y;
         }
 
 
@@ -81,7 +87,7 @@ namespace Fourmiliere
                     rndY = rnd.Next(0, tableau.GetLength(1) - 1);
                 }
                 tableau[rndX, rndY].contenu = 'S';
-                tableau[rndX, rndY].nombre_sucre = 99; //aléatoire?
+                tableau[rndX, rndY].nombre_sucre = 9; //aléatoire?
             }
 
 

@@ -8,7 +8,8 @@ namespace Fourmiliere
 {
     public static class Tour
     {
-        
+        public static int nbTours = 0;
+
         public static void TourDeJeu()
         {
             while(MapContientSucre())
@@ -31,11 +32,14 @@ namespace Fourmiliere
                         
                     }
                 }
+                Console.WriteLine();
                 Console.ReadKey();
-                
+                Console.WriteLine();
                 string affichage = "";
                 affichage = Program.affichGrille(affichage);
                 Console.WriteLine(affichage);
+                nbTours++;
+                FichierTxt.AjoutAuFichier();
             }
         }
 
