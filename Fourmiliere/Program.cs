@@ -6,6 +6,9 @@ namespace Fourmiliere
     {
         static void Main(string[] args)
         {
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Black;
+
 
             string affichage = "";
             Tableau tab = new Tableau(20, 20);
@@ -13,20 +16,21 @@ namespace Fourmiliere
             tab.InitNid();
             tab.InitSucre(5);
             tab.InitCailloux(20);
-            tab.InitFourmis(5);
-            Console.BackgroundColor = ConsoleColor.White;
-            Console.ForegroundColor = ConsoleColor.Black;
+            tab.InitFourmis(1);
+            tab.InitFourmis(1);
+            tab.InitFourmis(1);
 
-            affichage = AffichGrille(affichage);
+
+            affichage = affichGrille(affichage);
             Console.WriteLine(affichage);
             Console.ReadKey();
-            Console.WriteLine();
-            
             Tour.TourDeJeu();
-            
+
+
+            Console.ReadKey();
         }
 
-        public static string AffichGrille(string affichage)
+        public static string affichGrille(string affichage)
         {
             for (int i = 0; i < Tableau.tableau.GetLength(0); i++)
             {

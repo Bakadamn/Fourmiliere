@@ -10,14 +10,18 @@ namespace Fourmiliere
 {
     public class Fourmis 
     {
-
+        public bool sestDeplacee;
         public bool porteSucre;
 
         private Random rnd = new Random();
 
+        
+
         private bool chercheSucre;
         private bool chercheNid;
         public Case caseFourmis;
+        
+
 
         public Fourmis(Case ca)
         {
@@ -28,50 +32,44 @@ namespace Fourmiliere
 
         public void DeplacementAleatoire(Case ca)
         {
-            caseFourmis = ca;           //faire les test 
-
-            int x = this.caseFourmis.X;
-            int y = this.caseFourmis.Y;
-
-            int rndX = rnd.Next(3);
-            if(rndX == 0)
-            {
-                if (x != 0)
-                {
-                    x -= 1;
-                }
-                
-            }
-            else if(rndX == 1)
-            {
-                if (x != 19)
-                {
-                    x += 1;
-                }
-               
-            }
-
-            int rndY = 0;
+            caseFourmis = ca;
+            int x;
+            int y;
             do
             {
-                rndY = rnd.Next(3);
-                if (rndY == 0)
+               
+                do
                 {
-                    if (y != 0)
+                    x = caseFourmis.X;
+                    y = caseFourmis.Y;
+                    int rndX = rnd.Next(3);
+                    if (rndX == 0)
                     {
-                        y -= 1;
+                        x -= 1;
                     }
-                }
-                else if (rndY == 1)
-                {
-                    if (y != 19)
+                    else if (rndX == 1)
                     {
-                        y += 1;
+                        x += 1;
                     }
-                    
+
+                    int rndY;
+                    do
+                    {
+                        rndY = rnd.Next(3);
+                        if (rndY == 0)
+                        {
+                            y -= 1;
+                        }
+                        else if (rndY == 1)
+                        {
+                            y += 1;
+                        } // prévoir une solution si la formis ne peux pas bouger
+                    }
+                    while (rndX == 2 && rndY == 2);
                 }
+                while (!CaisseAOut.EstDansLeTableau(x, y));
             }
-            while (rndX == 2 && rndY == 2);
+            while (!CaisseAOut.CaseValidePourFourmis(Tableau.tableau[x, y]));
 
             DeplacerFourmis(x, y);
 
