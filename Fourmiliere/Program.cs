@@ -6,48 +6,55 @@ namespace Fourmiliere
     {
         static void Main(string[] args)
         {
-            
+
             string affichage = "";
-            Tableau tab = new Tableau(20,20);
+            Tableau tab = new Tableau(20, 20);
             tab.InitialisationTableau();
             tab.InitNid();
             tab.InitSucre(5);
             tab.InitCailloux(20);
-            tab.InitFourmis(1);
-            Console.BackgroundColor = ConsoleColor.White ;
+            tab.InitFourmis(5);
+            Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Black;
+
+            affichage = AffichGrille(affichage);
+            Console.WriteLine(affichage);
+            Console.ReadKey();
+            Console.WriteLine();
             
+            Tour.TourDeJeu();
+            
+        }
+
+        public static string AffichGrille(string affichage)
+        {
             for (int i = 0; i < Tableau.tableau.GetLength(0); i++)
             {
                 for (int y = 0; y < Tableau.tableau.GetLength(1); y++)
                 {
                     string aff = "";
-                    if (Tableau.tableau[i,y].contenu=='0')
+                    if (Tableau.tableau[i, y].contenu == '0')
                     {
-                        if(Tableau.tableau[i,y].fourmis!=null)
+                        if (Tableau.tableau[i, y].fourmis != null)
                         {
                             aff = "F";
                         }
                         else
-                        aff = Tableau.tableau[i, y].pheromone_nid.ToString();
+                            aff = Tableau.tableau[i, y].pheromone_nid.ToString();
                     }
                     else
                     {
-                        affichage += Tableau.tableau[i, y].contenu ;
+                        affichage += Tableau.tableau[i, y].contenu;
                     }
 
-                    affichage += aff ;
-                    
-                    
+                    affichage += aff;
+
+
                 }
                 affichage += "\n";
             }
-            Console.WriteLine(affichage);
-            Console.ReadKey();
-            Tour.TourDeJeu();
-            Console.WriteLine(affichage);
 
-            Console.ReadKey();
+            return affichage;
         }
     }
 }

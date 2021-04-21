@@ -21,6 +21,13 @@ namespace Fourmiliere
                         ca.fourmis.DeplacementAleatoire(ca);
                     }
                 }
+                
+                string affichage = "";
+                affichage = Program.AffichGrille(affichage);
+                Console.WriteLine(affichage);
+                Console.ReadKey();
+                Console.WriteLine();
+
             }
         }
 

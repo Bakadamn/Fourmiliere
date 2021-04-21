@@ -15,13 +15,9 @@ namespace Fourmiliere
 
         private Random rnd = new Random();
 
-        
-
         private bool chercheSucre;
         private bool chercheNid;
         public Case caseFourmis;
-        
-
 
         public Fourmis(Case ca)
         {
@@ -40,23 +36,39 @@ namespace Fourmiliere
             int rndX = rnd.Next(3);
             if(rndX == 0)
             {
-                x -= 1;
+                if (x != 0)
+                {
+                    x -= 1;
+                }
+                
             }
             else if(rndX == 1)
             {
-                x += 1;
+                if (x != 19)
+                {
+                    x += 1;
+                }
+               
             }
 
-            int rndY = rnd.Next(3);
+            int rndY = 0;
             do
             {
+                rndY = rnd.Next(3);
                 if (rndY == 0)
                 {
-                    y -= 1;
+                    if (y != 0)
+                    {
+                        y -= 1;
+                    }
                 }
                 else if (rndY == 1)
                 {
-                    y += 1;
+                    if (y != 19)
+                    {
+                        y += 1;
+                    }
+                    
                 }
             }
             while (rndX == 2 && rndY == 2);
