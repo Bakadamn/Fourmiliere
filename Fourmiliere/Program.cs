@@ -25,7 +25,7 @@ namespace Fourmiliere
             Console.WriteLine(affichage);
             Console.WriteLine();
             Console.ReadKey();
-            FichierTxt.creationFichierTxt();
+            //FichierTxt.creationFichierTxt();  //mis en commentaire pour dev
             Tour.TourDeJeu();
            
         }
