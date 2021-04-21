@@ -47,7 +47,7 @@ namespace Fourmiliere
                 rndX = rnd.Next(0, tableau.GetLength(0)-1);
                 rndY = rnd.Next(0, tableau.GetLength(1)-1);
 
-               if(CaseEstVide(tableau[rndX, rndY]))
+               if(CaisseAOut.CaseEstVide(tableau[rndX, rndY]))
                 {
                     estVide = true;
                 }
@@ -60,54 +60,8 @@ namespace Fourmiliere
 
             posNid[0] =  rndX;
             posNid[1] =  rndY;
-
-           // InitPhero(rndX, rndY);
         }
-        /*
-        private void InitPhero(int X, int Y)
-        {
-            int decalage = 3;
-            for(int i = 9; i>-1; i--)
-            {
-                int Xactuel = X - (10 - i); // - 1, 2, 3, 4
-                int Yactuel = Y - (10 - i);
-                int XnegActuel = X + (11 - i);  // +2, 3, 4, 5
-                int YnegActuel = Y + (11 - i);
-
-               if( EstDansLeTableau(Xactuel, 0) &&  EstDansLeTableau(Yactuel, 1))
-                {
-                    tableau[Xactuel, Yactuel].pheromone_nid = i;
-                }
-                if( EstDansLeTableau(XnegActuel, 0) &&  EstDansLeTableau(YnegActuel, 1))
-                {
-                    tableau[XnegActuel, YnegActuel].pheromone_nid = i;
-                }
-
-                for(int dec = 1; dec<=decalage; dec++)
-                {
-                    if(EstDansLeTableau(Xactuel + dec, 0) && (EstDansLeTableau(Yactuel , 1)))
-                    {
-                        tableau[Xactuel + dec, Yactuel ].pheromone_nid = i;
-                    }
-                    if(EstDansLeTableau(Xactuel , 0) && (EstDansLeTableau(Yactuel +dec, 1)))
-                    {
-                        tableau[Xactuel , Yactuel + dec].pheromone_nid = i;
-                    }
-                    if (EstDansLeTableau(XnegActuel - dec, 0) && (EstDansLeTableau(YnegActuel, 1)))
-                    {
-                        tableau[XnegActuel - dec, YnegActuel].pheromone_nid = i;
-                    }
-                    if (EstDansLeTableau(XnegActuel, 0) && (EstDansLeTableau(YnegActuel - dec, 1)))
-                    {
-                        tableau[XnegActuel, YnegActuel - dec].pheromone_nid = i; 
-                    }
-                }
-
-
-
-                decalage += 2;
-            }
-        } */
+       
 
 
     
@@ -156,24 +110,38 @@ namespace Fourmiliere
         {
             List<int[]> posPossible = new List<int[]>();
             
-            if (EstDansLeTableau(posNid[0]-1, 0) && (EstDansLeTableau(posNid[1] -1, 0)))
+            if (CaisseAOut.EstDansLeTableau(posNid[0]-1, 0) && (CaisseAOut.EstDansLeTableau(posNid[1] -1, 0)))
             {
                 
-                posPossible.Add(DeuxValeurEnTableau(posNid[0] - 1, posNid[1] - 1));
-                posPossible.Add(DeuxValeurEnTableau(posNid[0] +2, posNid[1] +2));
+                posPossible.Add(CaisseAOut.DeuxValeurEnTableau(posNid[0] - 1, posNid[1] - 1));
+                posPossible.Add(CaisseAOut.DeuxValeurEnTableau(posNid[0] +2, posNid[1] +2));
                 for (int i = 1; i<4; i ++)
                 {
-                    posPossible.Add(DeuxValeurEnTableau(posNid[0] - 1 + i, posNid[1] - 1));
-                    posPossible.Add(DeuxValeurEnTableau(posNid[0] - 1 , posNid[1] - 1 + i ));
+                    posPossible.Add(CaisseAOut.DeuxValeurEnTableau(posNid[0] - 1 + i, posNid[1] - 1));
+                    posPossible.Add(CaisseAOut.DeuxValeurEnTableau(posNid[0] - 1 , posNid[1] - 1 + i ));
 
-                    posPossible.Add(DeuxValeurEnTableau(posNid[0] + 2 - i, posNid[1] + 2));
-                    posPossible.Add(DeuxValeurEnTableau(posNid[0] + 2, posNid[1] + 2 - i));
+                    posPossible.Add(CaisseAOut.DeuxValeurEnTableau(posNid[0] + 2 - i, posNid[1] + 2));
+                    posPossible.Add(CaisseAOut.DeuxValeurEnTableau(posNid[0] + 2, posNid[1] + 2 - i));
                 }
             }
 
+            bool fourmiCree = false;
+            while(!fourmiCree)
+            {
+                int rndCase = rnd.Next(posPossible.Count());
+                rndCase--;
+                if (CaisseAOut.CaseValidePourFourmis(Tableau.tableau[posPossible[rndCase][0], posPossible[rndCase][1]]))
+                {
+                    tableau[posPossible[rndCase][0], posPossible[rndCase][1]].fourmis = new Fourmis(tableau[posPossible[rndCase][0], posPossible[rndCase][1]]);
+                    //mettre un ptit random
+                    return;
+                }
+            }
+
+
             foreach(int[] possibilite in posPossible)
             {
-                if(tableau[possibilite[0], possibilite[1]].fourmis==null)
+                if (CaisseAOut.CaseValidePourFourmis(Tableau.tableau[possibilite[0],possibilite[1]] )) 
                 {
                     tableau[possibilite[0], possibilite[1]].fourmis = new Fourmis(tableau[possibilite[0], possibilite[1]]);
                     //mettre un ptit random
@@ -183,34 +151,6 @@ namespace Fourmiliere
             }
         }
 
-        private int[] DeuxValeurEnTableau(int une, int deux)
-        {
-            int[] instance = new int[2];
-            instance[0] = une;
-            instance[1] = deux;
 
-            return instance;
-        }
-
-        private bool CaseEstVide(Case ca)
-        {
-            if (ca.contenu == '0')
-            {
-                return true;
-            }
-            else
-                return false;
-        }
-        private bool EstDansLeTableau(int valeur, int dimension)
-        {
-            if (valeur < tableau.GetLength(dimension) && valeur >= 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
     }
 }

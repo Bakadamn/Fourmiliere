@@ -8,19 +8,34 @@ namespace Fourmiliere
 {
     public static class Tour
     {
-
+        
         public static void TourDeJeu()
         {
             while(MapContientSucre())
             {
-                foreach(Case ca in Tableau.tableau)
+                foreach (Case ca in Tableau.tableau)
                 {
-                    if(ca.fourmis!=null)
+                    if (ca.fourmis != null)
                     {
-                        //méthode fourmis
-                        ca.fourmis.DeplacementAleatoire(ca);
+                        ca.fourmis.sestDeplacee = false;
                     }
                 }
+
+                foreach (Case ca in Tableau.tableau)
+                {
+                    if(ca.fourmis!=null && ca.fourmis.sestDeplacee == false)
+                    {
+                        //méthode fourmis
+                        ca.fourmis.sestDeplacee = true;
+                        ca.fourmis.DeplacementAleatoire(ca);
+                        
+                    }
+                }
+                Console.ReadKey();
+                
+                string affichage = "";
+                affichage = Program.affichGrille(affichage);
+                Console.WriteLine(affichage);
             }
         }
 
