@@ -20,8 +20,9 @@ namespace Fourmiliere
         private bool chercheSucre;
         private bool chercheNid;
         public Case caseFourmis;
-        
 
+        private int distanceNid;
+        private int distanceSucre;
 
         public Fourmis(Case ca)
         {
@@ -30,9 +31,18 @@ namespace Fourmiliere
             chercheSucre = true;
         }
 
-        public void DeplacementAleatoire(Case ca)
+
+        public void ChoixDeLaction()
         {
-            caseFourmis = ca;
+
+
+
+            DeplacementAleatoire();
+        }
+
+        public void DeplacementAleatoire()
+        {
+            
             int x;
             int y;
             do
@@ -75,14 +85,22 @@ namespace Fourmiliere
 
         }
 
-        public void DeplacerFourmis(int x, int y)
+        private void DeplacerFourmis(int x, int y)
         {
+            DepotDePheromone();
             Tableau.tableau[caseFourmis.X, caseFourmis.Y].fourmis = null;
-            Tableau.tableau[x, y].fourmis = this;            
+            Tableau.tableau[x, y].fourmis = this;
+            caseFourmis = Tableau.tableau[x, y];
         }
 
 
-
+        private void DepotDePheromone()
+        {
+            if (chercheSucre == true)
+            {
+                 
+            }
+        }
 
     }
 }
