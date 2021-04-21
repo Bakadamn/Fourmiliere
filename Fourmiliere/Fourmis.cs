@@ -51,7 +51,7 @@ namespace Fourmiliere
                 do
                 {
                     x = caseFourmis.X;
-                    y = caseFourmis.Y;
+                    
                     int rndX = rnd.Next(3);
                     if (rndX == 0)
                     {
@@ -65,6 +65,7 @@ namespace Fourmiliere
                     int rndY;
                     do
                     {
+                        y = caseFourmis.Y;
                         rndY = rnd.Next(3);
                         if (rndY == 0)
                         {
@@ -113,7 +114,7 @@ namespace Fourmiliere
                 if (CaisseAOut.EstDansLeTableau(x - 1 + i, y + 1)) 
                     liste.Add(Tableau.tableau[x-1 +i, y+1]);
 
-                if (CaisseAOut.EstDansLeTableau(x - 1 + i, y - 1) && i != 1)
+                if (CaisseAOut.EstDansLeTableau(x - 1 + i, y ) && i != 1)
                     liste.Add(Tableau.tableau[x - 1 + i, y]);
             }
 

@@ -39,7 +39,8 @@ namespace Fourmiliere
         }
         public static bool EstDansLeTableau(int x, int y) //verifie que les coordonnées sont bien dans les limites du tableau
         {
-            if (x < Tableau.tableau.GetLength(0)-1 && x >= 0 && y < Tableau.tableau.GetLength(1)-1 && y>= 0) 
+            if (x < Tableau.tableau.GetLength(0) && x >= 0 &&
+                y < Tableau.tableau.GetLength(1) && y>= 0) 
             {                                       
                 return true;
             }
