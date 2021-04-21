@@ -11,7 +11,7 @@ namespace Fourmiliere
 
 
             string affichage = "";
-            Tableau tab = new Tableau(12, 12);
+            Tableau tab = new Tableau(20, 20);
             tab.InitialisationTableau();
             tab.InitNid();
             tab.InitSucre(2);

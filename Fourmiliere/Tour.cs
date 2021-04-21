@@ -39,7 +39,7 @@ namespace Fourmiliere
                 affichage = Program.affichGrille(affichage);
                 Console.WriteLine(affichage);
                 nbTours++;
-                FichierTxt.AjoutAuFichier();
+                //FichierTxt.AjoutAuFichier();  //en commentaire pour dev
             }
         }
 
