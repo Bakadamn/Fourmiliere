@@ -12,8 +12,6 @@ namespace Fourmiliere
         {
             if (!CaseEstVide(ca))
                 return false;
-            if (!EstDansLeTableau(ca.X, ca.Y))
-                return false;
             if (!CaseEstSansFourmis(ca.X, ca.Y))
                 return false;
             
@@ -56,6 +54,27 @@ namespace Fourmiliere
                 return true;
             else
                 return false;
+        }
+
+        public static List<Case> CasesAlentours(int x, int y) //retourne la liste des cases entourant la fourmi
+        {
+            List<Case> liste = new List<Case>();
+
+            for (int i = 0; i < 3; i++)
+            {
+                if (CaisseAOut.EstDansLeTableau(x - 1 + i, y - 1))
+                    liste.Add(Tableau.tableau[x - 1 + i, y - 1]);
+
+                if (CaisseAOut.EstDansLeTableau(x - 1 + i, y + 1))
+                    liste.Add(Tableau.tableau[x - 1 + i, y + 1]);
+
+                if (CaisseAOut.EstDansLeTableau(x - 1 + i, y) && i != 1)
+                    liste.Add(Tableau.tableau[x - 1 + i, y]);
+            }
+
+
+            return liste;
+
         }
     }
 }
