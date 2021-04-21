@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace Fourmiliere
 {
-    public class Fourmis 
+    public class Fourmis
     {
         public bool sestDeplacee;
         public bool porteSucre;
 
         private Random rnd = new Random();
 
-        
+
 
         private bool chercheSucre;
         private bool chercheNid;
@@ -42,12 +42,12 @@ namespace Fourmiliere
 
         public void DeplacementAleatoire()
         {
-            
+            CasesAlentours();
             int x;
             int y;
             do
             {
-               
+
                 do
                 {
                     x = caseFourmis.X;
@@ -73,7 +73,7 @@ namespace Fourmiliere
                         else if (rndY == 1)
                         {
                             y += 1;
-                        } // prévoir une solution si la formis ne peux pas bouger
+                        } // prévoir une solution si la fourmis ne peux pas bouger
                     }
                     while (rndX == 2 && rndY == 2);
                 }
@@ -96,10 +96,35 @@ namespace Fourmiliere
 
         private void DepotDePheromone()
         {
-            if (chercheSucre == true)
+
+        }
+
+        private List<Case> CasesAlentours() //retourne la liste des cases entourant la fourmi
+        {
+            int x = caseFourmis.X;
+            int y = caseFourmis.Y;
+            List<Case> liste = new List<Case>();
+
+            for(int i = 0; i<3;i++)
             {
-                 
+                if (CaisseAOut.EstDansLeTableau(x - 1 + i, y - 1))
+                    liste.Add(Tableau.tableau[x-1 +i, y-1]);
+
+                if (CaisseAOut.EstDansLeTableau(x - 1 + i, y + 1)) 
+                    liste.Add(Tableau.tableau[x-1 +i, y+1]);
+
+                if (CaisseAOut.EstDansLeTableau(x - 1 + i, y - 1) && i != 1)
+                    liste.Add(Tableau.tableau[x - 1 + i, y]);
             }
+
+            foreach(Case cac in liste)
+            {
+                Console.WriteLine(cac.X +" ; " + cac.Y);
+            }
+            Console.WriteLine("ok ok ok ");
+
+            return liste;
+
         }
 
     }

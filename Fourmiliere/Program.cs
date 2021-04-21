@@ -17,8 +17,6 @@ namespace Fourmiliere
             tab.InitSucre(2);
             tab.InitCailloux(2);
             tab.InitFourmis(1);
-            tab.InitFourmis(1);
-            tab.InitFourmis(1);
 
 
             affichage = affichGrille(affichage);

@@ -134,11 +134,12 @@ namespace Fourmiliere
             bool fourmiCree = false;
             while(!fourmiCree)
             {
-                int rndCase = rnd.Next(posPossible.Count());
+                int rndCase = rnd.Next(1, posPossible.Count());
                 rndCase--;
                 if (CaisseAOut.CaseValidePourFourmis(Tableau.tableau[posPossible[rndCase][0], posPossible[rndCase][1]]))
                 {
                     tableau[posPossible[rndCase][0], posPossible[rndCase][1]].fourmis = new Fourmis(tableau[posPossible[rndCase][0], posPossible[rndCase][1]]);
+                    fourmiCree = true;
                     //mettre un ptit random
                     return;
                 }
