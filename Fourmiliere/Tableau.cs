@@ -89,9 +89,8 @@ namespace Fourmiliere
                 tableau[rndX, rndY].contenu = 'S';
                 tableau[rndX, rndY].nombre_sucre = 9; //aléatoire?
             }
-
-
         }
+
         public void InitCailloux(int NbrCailloux)
         {
             int rndX = 0;

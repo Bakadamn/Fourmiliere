@@ -37,6 +37,10 @@ namespace Fourmiliere
             List<Case> listePheroSucre = new List<Case>();
             List<Case> listePheroNid = new List<Case>();
 
+            List<Case> listeCaseSucre = new List<Case>();
+            List<Case> listeCaseNid = new List<Case>();
+
+
             
 
             int cptCasesValides = 0;
@@ -46,14 +50,39 @@ namespace Fourmiliere
                     listePheroSucre.Add(ca);
                 if (ca.pheromone_nid > 0)
                     listePheroNid.Add(ca);
+                if (ca.nombre_sucre > 0)
+                    listeCaseSucre.Add(ca);
+                if (ca.contenu == 'N')
+                    listeCaseNid.Add(ca);
                 if (CaisseAOut.CaseValidePourFourmis(ca))
                     cptCasesValides++;
             }
 
-            if (cptCasesValides==0) //Aucune case n'est valide on sort de la fonction
+
+
+         
+            if(chercheSucre && listeCaseSucre.Count()>0) // si un cherche sucre et qu'un sucre est a proximité, on charge la mule
+            {
+                listeCaseSucre[0].nombre_sucre--;
+                porteSucre = true;
+                chercheSucre = false;
+                chercheNid = true;
+                return;
+            }
+
+            
+            if(chercheNid && listeCaseNid.Count()>0) // si cherche le nid et qu'il est a proximité, on décharge la mule
+            {
+                porteSucre = false;
+                chercheNid = false;
+                chercheNid = true;
+                return;
+            }
+
+            if (cptCasesValides == 0) //Aucune case n'est valide on sort de la fonction
                 return;
 
-            if (chercheSucre && listePheroSucre.Count()>0)
+            if (chercheSucre && listePheroSucre.Count()>0) //La fourmi suit la piste du sucre
             {
                 int pheroMax = 0;
                 int index = -1;
@@ -68,11 +97,18 @@ namespace Fourmiliere
                     cpt++;
                 }
                 if (index > -1)
+                {
                     DeplacerFourmis(listePheroSucre[index].X, listePheroSucre[index].Y);
+                    return;
+                }
                 else
+                {
                     DeplacementAleatoire();
+                    return;
+                }
+                  
             }
-            else if(chercheNid && listePheroNid.Count()>0)
+            else if(chercheNid && listePheroNid.Count()>0) //La fourmi suit la piste du Nid
             {
                 int pheroMax = 0;
                 int index = -1;
@@ -87,13 +123,20 @@ namespace Fourmiliere
                     cpt++;
                 }
                 if (index > -1)
+                {
                     DeplacerFourmis(listePheroNid[index].X, listePheroNid[index].Y);
+                    return;
+                }
                 else
+                {
                     DeplacementAleatoire();
+                    return;
+                }
             }
-            else
+            else //la fourmi se déplace aléatoirement 
             {
                 DeplacementAleatoire();
+                return;
             }
         }
 

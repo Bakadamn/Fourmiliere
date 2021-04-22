@@ -43,8 +43,13 @@ namespace Fourmiliere
                         {
                             aff = "F";
                         }
+                        
                         else
                             aff = Tableau.tableau[i, y].pheromone_nid.ToString();
+                    }
+                    else if (Tableau.tableau[i, y].nombre_sucre > 0)
+                    {
+                        aff = Tableau.tableau[i, y].nombre_sucre.ToString();
                     }
                     else
                     {
