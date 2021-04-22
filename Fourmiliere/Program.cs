@@ -6,8 +6,8 @@ namespace Fourmiliere
     {
         static void Main(string[] args)
         {
-            Console.BackgroundColor = ConsoleColor.White;
-            Console.ForegroundColor = ConsoleColor.Black;
+            
+            
 
 
             string affichage = "";
@@ -32,37 +32,55 @@ namespace Fourmiliere
 
         public static string affichGrille(string affichage)
         {
+
             for (int i = 0; i < Tableau.tableau.GetLength(0); i++)
             {
                 for (int y = 0; y < Tableau.tableau.GetLength(1); y++)
                 {
+                    Console.ForegroundColor = ConsoleColor.White;
                     string aff = "";
                     if (Tableau.tableau[i, y].contenu == '0')
                     {
                         if (Tableau.tableau[i, y].fourmis != null)
                         {
+                            Console.ForegroundColor = ConsoleColor.Green;
                             aff = "F";
+                            Console.Write(aff);
                         }
                         
                         else
+                        {
+
                             aff = Tableau.tableau[i, y].pheromone_nid.ToString();
+
+                            Console.Write(Tableau.tableau[i, y].pheromone_nid.ToString());
+                        }
                     }
                     else if (Tableau.tableau[i, y].nombre_sucre > 0)
                     {
+                        Console.ForegroundColor = ConsoleColor.Blue;
                         aff = Tableau.tableau[i, y].nombre_sucre.ToString();
+                        Console.Write(Tableau.tableau[i, y].nombre_sucre.ToString());
                     }
                     else
                     {
+                        if (Tableau.tableau[i, y].contenu == 'N')
+                            Console.ForegroundColor = ConsoleColor.DarkRed;
+                        else if (Tableau.tableau[i, y].contenu == 'C')
+                            Console.ForegroundColor = ConsoleColor.Magenta;
+
                         affichage += Tableau.tableau[i, y].contenu;
+                        Console.Write(Tableau.tableau[i, y].contenu);
                     }
 
                     affichage += aff;
 
 
                 }
-                affichage += "\n";
+                //affichage += "\n";
+                Console.Write("\n");
             }
-
+            affichage = "";
             return affichage;
         }
     }

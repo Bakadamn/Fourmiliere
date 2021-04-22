@@ -147,7 +147,6 @@ namespace Fourmiliere
             int y;
             do
             {
-
                 do
                 {
                     x = caseFourmi.X;
