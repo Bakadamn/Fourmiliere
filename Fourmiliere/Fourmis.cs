@@ -75,7 +75,7 @@ namespace Fourmiliere
             {
                 porteSucre = false;
                 chercheNid = false;
-                chercheNid = true;
+                chercheSucre = true;
                 return;
             }
 

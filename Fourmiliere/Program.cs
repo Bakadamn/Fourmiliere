@@ -14,7 +14,7 @@ namespace Fourmiliere
             Tableau tab = new Tableau(20, 20);
             tab.InitialisationTableau();
             tab.InitNid();
-            tab.InitSucre(2);
+            tab.InitSucre(10);
             tab.InitCailloux(2);
             tab.InitFourmis(1);
             tab.InitFourmis(1);

@@ -28,7 +28,7 @@ namespace Fourmiliere
                     {
                         //méthode fourmis
                         ca.fourmis.sestDeplacee = true;
-                        ca.fourmis.DeplacementAleatoire();
+                        ca.fourmis.ChoixDeLaction();
                         
                     }
                 }
