@@ -160,16 +160,37 @@ namespace Fourmiliere
         public void InitPhero(int X, int Y)
         {
             int decalage = 3;
-            int test = hauteur - (hauteur - posNid[0]);
-            for (int i=test ; i > -1; i--)
-            {
-                int Xactuel = X - ((test+1) - i);
-                int Yactuel = Y - ((test+1) - i);
+            int test = 0;
+            int[] resultTest = {
+                   hauteur - (posNid[0]+2),
+                   posNid[0],
+                   posNid[1],
+                   largeur - (posNid[1]+2) };
 
+            for(int i=0; i<resultTest.Length; i++)
+            {
+                if(resultTest[i] > test)
+                {
+                    test = resultTest[i];
+                }
+            }
+
+
+
+            for (int i = test; i > -1; i--)
+            {
+                int Xactuel = X - ((test + 1) - i); // - 1, 2, 3, 4
+                int Yactuel = Y - ((test + 1) - i);
+                int XnegActuel = X + ((test + 2) - i);  // +2, 3, 4, 5
+                int YnegActuel = Y + ((test + 2) - i);
 
                 if (CaisseAOut.EstDansLeTableau(Xactuel, 0) && CaisseAOut.EstDansLeTableau(Yactuel, 1))
                 {
                     tableau[Xactuel, Yactuel].pheromone_nid = i;
+                }
+                if (CaisseAOut.EstDansLeTableau(XnegActuel, 0) && CaisseAOut.EstDansLeTableau(YnegActuel, 1))
+                {
+                    tableau[XnegActuel, YnegActuel].pheromone_nid = i;
                 }
 
                 for (int dec = 1; dec <= decalage; dec++)
@@ -182,8 +203,18 @@ namespace Fourmiliere
                     {
                         tableau[Xactuel, Yactuel + dec].pheromone_nid = i;
                     }
-
+                    if (CaisseAOut.EstDansLeTableau(XnegActuel - dec, 0) && (CaisseAOut.EstDansLeTableau(YnegActuel, 1)))
+                    {
+                        tableau[XnegActuel - dec, YnegActuel].pheromone_nid = i;
+                    }
+                    if (CaisseAOut.EstDansLeTableau(XnegActuel, 0) && (CaisseAOut.EstDansLeTableau(YnegActuel - dec, 1)))
+                    {
+                        tableau[XnegActuel, YnegActuel - dec].pheromone_nid = i;
+                    }
                 }
+
+
+
                 decalage += 2;
             }
         }
