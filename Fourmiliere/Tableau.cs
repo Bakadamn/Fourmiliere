@@ -10,7 +10,7 @@ namespace Fourmiliere
     {
         public static Case[,] tableau;
         Random rnd = new Random();
-        int[] posNid = new int[2];
+        public int[] posNid = new int[2];
         public int largeur;
         public int hauteur;
 
@@ -156,6 +156,39 @@ namespace Fourmiliere
 
             }
         }
+
+        public void InitPhero(int X, int Y)
+        {
+            int decalage = 3;
+            int test = hauteur - (hauteur - posNid[0]);
+            for (int i=test ; i > -1; i--)
+            {
+                int Xactuel = X - ((test+1) - i);
+                int Yactuel = Y - ((test+1) - i);
+
+
+                if (CaisseAOut.EstDansLeTableau(Xactuel, 0) && CaisseAOut.EstDansLeTableau(Yactuel, 1))
+                {
+                    tableau[Xactuel, Yactuel].pheromone_nid = i;
+                }
+
+                for (int dec = 1; dec <= decalage; dec++)
+                {
+                    if (CaisseAOut.EstDansLeTableau(Xactuel + dec, 0) && (CaisseAOut.EstDansLeTableau(Yactuel, 1)))
+                    {
+                        tableau[Xactuel + dec, Yactuel].pheromone_nid = i;
+                    }
+                    if (CaisseAOut.EstDansLeTableau(Xactuel, 0) && (CaisseAOut.EstDansLeTableau(Yactuel + dec, 1)))
+                    {
+                        tableau[Xactuel, Yactuel + dec].pheromone_nid = i;
+                    }
+
+                }
+                decalage += 2;
+            }
+        }
+
+
 
 
     }
