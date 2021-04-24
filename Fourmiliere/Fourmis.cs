@@ -86,9 +86,10 @@ namespace Fourmiliere
             {
                 int pheroMax = 0;
                 int index = -1;
-                foreach(Case ca in listePheroSucre)
+                int cpt = 0;
+                foreach (Case ca in listePheroSucre)
                 {
-                    int cpt = 0;
+                    
                     if(ca.pheromone_sucre>pheroMax && CaisseAOut.CaseValidePourFourmis(ca))
                     {
                         pheroMax = ca.pheromone_sucre; 
@@ -112,15 +113,17 @@ namespace Fourmiliere
             {
                 int pheroMax = 0;
                 int index = -1;
+                int cpt = 0;
                 foreach (Case ca in listePheroNid)
                 {
-                    int cpt = 0;
                     if (ca.pheromone_nid > pheroMax && CaisseAOut.CaseValidePourFourmis(ca))
                     {
-                        pheroMax = ca.pheromone_sucre;
+                        pheroMax = ca.pheromone_nid;
                         index = cpt;
+                     
                     }
                     cpt++;
+
                 }
                 if (index > -1)
                 {

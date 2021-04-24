@@ -135,13 +135,13 @@ namespace Fourmiliere
             {
                 int rndCase = rnd.Next(1, posPossible.Count());
                 rndCase--;
-                if (CaisseAOut.CaseValidePourFourmis(Tableau.tableau[posPossible[rndCase][0], posPossible[rndCase][1]]))
-                {
-                    tableau[posPossible[rndCase][0], posPossible[rndCase][1]].fourmis = new Fourmis(tableau[posPossible[rndCase][0], posPossible[rndCase][1]]);
-                    fourmiCree = true;
-                    //mettre un ptit random
-                    return;
-                }
+                if(CaisseAOut.EstDansLeTableau(posPossible[rndCase][0], posPossible[rndCase][1]))
+                    if (CaisseAOut.CaseValidePourFourmis(Tableau.tableau[posPossible[rndCase][0], posPossible[rndCase][1]]))
+                    {
+                        tableau[posPossible[rndCase][0], posPossible[rndCase][1]].fourmis = new Fourmis(tableau[posPossible[rndCase][0], posPossible[rndCase][1]]);
+                        fourmiCree = true;
+                        return;
+                    }
             }
 
 
@@ -184,30 +184,30 @@ namespace Fourmiliere
                 int XnegActuel = X + ((test + 2) - i);  // +2, 3, 4, 5
                 int YnegActuel = Y + ((test + 2) - i);
 
-                if (CaisseAOut.EstDansLeTableau(Xactuel, 0) && CaisseAOut.EstDansLeTableau(Yactuel, 1))
+                if (CaisseAOut.EstDansLeTableau(Xactuel, Yactuel))
                 {
                     tableau[Xactuel, Yactuel].pheromone_nid = i;
                 }
-                if (CaisseAOut.EstDansLeTableau(XnegActuel, 0) && CaisseAOut.EstDansLeTableau(YnegActuel, 1))
+                if (CaisseAOut.EstDansLeTableau(XnegActuel, YnegActuel) )
                 {
                     tableau[XnegActuel, YnegActuel].pheromone_nid = i;
                 }
 
                 for (int dec = 1; dec <= decalage; dec++)
                 {
-                    if (CaisseAOut.EstDansLeTableau(Xactuel + dec, 0) && (CaisseAOut.EstDansLeTableau(Yactuel, 1)))
+                    if (CaisseAOut.EstDansLeTableau(Xactuel + dec, Yactuel))
                     {
                         tableau[Xactuel + dec, Yactuel].pheromone_nid = i;
                     }
-                    if (CaisseAOut.EstDansLeTableau(Xactuel, 0) && (CaisseAOut.EstDansLeTableau(Yactuel + dec, 1)))
+                    if (CaisseAOut.EstDansLeTableau(Xactuel,Yactuel + dec))
                     {
                         tableau[Xactuel, Yactuel + dec].pheromone_nid = i;
                     }
-                    if (CaisseAOut.EstDansLeTableau(XnegActuel - dec, 0) && (CaisseAOut.EstDansLeTableau(YnegActuel, 1)))
+                    if (CaisseAOut.EstDansLeTableau(XnegActuel - dec, YnegActuel))
                     {
                         tableau[XnegActuel - dec, YnegActuel].pheromone_nid = i;
                     }
-                    if (CaisseAOut.EstDansLeTableau(XnegActuel, 0) && (CaisseAOut.EstDansLeTableau(YnegActuel - dec, 1)))
+                    if (CaisseAOut.EstDansLeTableau(XnegActuel, YnegActuel - dec))
                     {
                         tableau[XnegActuel, YnegActuel - dec].pheromone_nid = i;
                     }

@@ -15,9 +15,9 @@ namespace Fourmiliere
             tab.InitialisationTableau();
             tab.InitNid();
             tab.InitPhero(tab.posNid[0], tab.posNid[1]);
-            //tab.InitSucre(10);
+            tab.InitSucre(10);
             //tab.InitCailloux(2);
-            //tab.InitFourmis(1);
+            tab.InitFourmis(1);
 
 
 
@@ -44,7 +44,7 @@ namespace Fourmiliere
                         if (Tableau.tableau[i, y].fourmis != null)
                         {
                             Console.ForegroundColor = ConsoleColor.Green;
-                            aff = "F";
+                            aff = "F ";
                             Console.Write(aff);
                         }
                         
@@ -52,15 +52,17 @@ namespace Fourmiliere
                         {
 
                             aff = Tableau.tableau[i, y].pheromone_nid.ToString();
-
+                            if(Tableau.tableau[i, y].pheromone_nid>9)
                             Console.Write(Tableau.tableau[i, y].pheromone_nid.ToString());
+                            else
+                            Console.Write(Tableau.tableau[i, y].pheromone_nid.ToString()+" ");
                         }
                     }
                     else if (Tableau.tableau[i, y].nombre_sucre > 0)
                     {
                         Console.ForegroundColor = ConsoleColor.Blue;
                         aff = Tableau.tableau[i, y].nombre_sucre.ToString();
-                        Console.Write(Tableau.tableau[i, y].nombre_sucre.ToString());
+                        Console.Write(Tableau.tableau[i, y].nombre_sucre.ToString() + " ");
                     }
                     else
                     {
@@ -69,11 +71,9 @@ namespace Fourmiliere
                         else if (Tableau.tableau[i, y].contenu == 'C')
                             Console.ForegroundColor = ConsoleColor.Magenta;
 
-                        affichage += Tableau.tableau[i, y].contenu;
-                        Console.Write(Tableau.tableau[i, y].contenu);
+                        Console.Write(Tableau.tableau[i, y].contenu+ " ");
                     }
 
-                    affichage += aff;
 
 
                 }
