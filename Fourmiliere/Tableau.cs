@@ -131,6 +131,7 @@ namespace Fourmiliere
             }
 
             bool fourmiCree = false;
+            if(posPossible.Count()>0)
             while(!fourmiCree)
             {
                 int rndCase = rnd.Next(1, posPossible.Count());

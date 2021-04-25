@@ -31,10 +31,15 @@ namespace Fourmiliere
                         ca.fourmis.ChoixDeLaction();
                         
                     }
+                    if(ca.pheromone_sucre>0)
+                    {
+                        ca.pheromone_sucre--;
+                    }
                 }
                 Console.WriteLine();
                 Console.ReadKey();
                 Console.WriteLine();
+
                 string affichage = "";
                 affichage = Program.affichGrille(affichage);
                 Console.WriteLine(affichage);

@@ -22,7 +22,7 @@ namespace Fourmiliere
         public Case caseFourmi;
 
         private int distanceNid;
-        private int distanceSucre;
+        private int pheroSucreVal;
 
         public Fourmis(Case ca)
         {
@@ -67,6 +67,7 @@ namespace Fourmiliere
                 porteSucre = true;
                 chercheSucre = false;
                 chercheNid = true;
+                pheroSucreVal = (Tableau.tableau.GetLength(0) + Tableau.tableau.GetLength(1)) - caseFourmi.pheromone_nid;
                 return;
             }
 
@@ -76,6 +77,7 @@ namespace Fourmiliere
                 porteSucre = false;
                 chercheNid = false;
                 chercheSucre = true;
+                DepotDePheromoneSucre();
                 return;
             }
 
@@ -97,7 +99,7 @@ namespace Fourmiliere
                     }
                     cpt++;
                 }
-                if (index > -1)
+                if (index > -1 && listePheroSucre[index].pheromone_sucre>=caseFourmi.pheromone_sucre)
                 {
                     DeplacerFourmis(listePheroSucre[index].X, listePheroSucre[index].Y);
                     return;
@@ -127,6 +129,7 @@ namespace Fourmiliere
                 }
                 if (index > -1)
                 {
+                    DepotDePheromoneSucre();
                     DeplacerFourmis(listePheroNid[index].X, listePheroNid[index].Y);
                     return;
                 }
@@ -194,16 +197,18 @@ namespace Fourmiliere
 
         private void DeplacerFourmis(int x, int y)
         {
-            DepotDePheromone();
+            
             Tableau.tableau[caseFourmi.X, caseFourmi.Y].fourmis = null;
             Tableau.tableau[x, y].fourmis = this;
             caseFourmi = Tableau.tableau[x, y];
         }
 
 
-        private void DepotDePheromone()
+        private void DepotDePheromoneSucre()
         {
-
+            caseFourmi.pheromone_sucre = pheroSucreVal;
+            pheroSucreVal--;
+            pheroSucreVal--;
         }
 
       
