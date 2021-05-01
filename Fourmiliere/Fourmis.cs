@@ -49,7 +49,7 @@ namespace Fourmiliere
                 if (ca.pheromone_sucre > 0)
                     listePheroSucre.Add(ca);
                 if (ca.pheromone_nid > 0)
-                    listePheroNid.Add(ca);
+                    listePheroNid.Add(ca);  
                 if (ca.nombre_sucre > 0)
                     listeCaseSucre.Add(ca);
                 if (ca.contenu == 'N')

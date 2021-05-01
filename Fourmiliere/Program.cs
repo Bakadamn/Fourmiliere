@@ -85,6 +85,7 @@ namespace Fourmiliere
                     Console.Write(aff);
 
                 }
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.Write("|\n");
                 for(int a = 0; a< Tableau.tableau.GetLength(1); a++)
                 {
