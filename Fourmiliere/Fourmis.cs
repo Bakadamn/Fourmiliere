@@ -63,11 +63,14 @@ namespace Fourmiliere
          
             if(chercheSucre && listeCaseSucre.Count()>0) // si un cherche sucre et qu'un sucre est a proximité, on charge la mule
             {
+                int nidY = Math.Abs(Tableau.posNidStatic[0]);
+                int nidX = Math.Abs(Tableau.posNidStatic[1]);
+
                 listeCaseSucre[0].nombre_sucre--;
                 porteSucre = true;
                 chercheSucre = false;
                 chercheNid = true;
-                pheroSucreVal = (Tableau.tableau.GetLength(0) + Tableau.tableau.GetLength(1)) - caseFourmi.pheromone_nid;
+                pheroSucreVal = (Math.Abs(nidX- caseFourmi.X ))+ (Math.Abs(nidY- caseFourmi.Y )) ;
                 return;
             }
 
@@ -113,7 +116,7 @@ namespace Fourmiliere
             }
             else if(chercheNid && listePheroNid.Count()>0) //La fourmi suit la piste du Nid
             {
-                int pheroMax = 0;
+                int pheroMax = 0; //a faire : choisir la case la plus proche du nid si égalité de pheromone
                 int index = -1;
                 int cpt = 0;
                 foreach (Case ca in listePheroNid)

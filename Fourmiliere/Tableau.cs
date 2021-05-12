@@ -14,6 +14,8 @@ namespace Fourmiliere
         public int largeur;
         public int hauteur;
 
+        public static int[] posNidStatic = new int[2];
+
       
         public Tableau()
         {
@@ -66,6 +68,9 @@ namespace Fourmiliere
 
             posNid[0] =  rndX;
             posNid[1] =  rndY;
+
+            posNidStatic[0] = rndX;
+            posNidStatic[1] = rndX;
         }
        
 
