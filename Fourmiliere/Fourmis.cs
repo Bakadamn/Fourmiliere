@@ -66,6 +66,8 @@ namespace Fourmiliere
                 int nidY = Math.Abs(Tableau.posNidStatic[0]);
                 int nidX = Math.Abs(Tableau.posNidStatic[1]);
 
+                Console.WriteLine("POSITION NID / "+nidY + nidX);
+
                 listeCaseSucre[0].nombre_sucre--;
                 porteSucre = true;
                 chercheSucre = false;
