@@ -63,16 +63,36 @@ namespace Fourmiliere
          
             if(chercheSucre && listeCaseSucre.Count()>0) // si un cherche sucre et qu'un sucre est a proximité, on charge la mule
             {
-                int nidY = Math.Abs(Tableau.posNidStatic[0]);
-                int nidX = Math.Abs(Tableau.posNidStatic[1]);
+                int nidX = Tableau.posNidStatic[0];
+                int nidY = Tableau.posNidStatic[1];
 
-                Console.WriteLine("POSITION NID / "+nidY + nidX);
+                int distanceX;
+                int distanceY;
+
+                if (nidX > caseFourmi.X)
+                    distanceX = nidX - caseFourmi.X;
+                else
+                    distanceX =  caseFourmi.X - nidX;
+
+                if (nidY > caseFourmi.Y)
+                    distanceY = nidY - caseFourmi.Y;
+                else
+                    distanceY = caseFourmi.Y - nidY;
+
+                //La valeur du phéromone sucre est la distance entre le nid et le sucre fois deux (le temps de l'allez-retour) + 3 (reste trois tours supplémentaire)
+                
+                if (distanceX > distanceY)
+                    pheroSucreVal = distanceX*2+3;
+                else
+                    pheroSucreVal = distanceY*2+3;
+                
+
 
                 listeCaseSucre[0].nombre_sucre--;
                 porteSucre = true;
                 chercheSucre = false;
                 chercheNid = true;
-                pheroSucreVal = (Math.Abs(nidX- caseFourmi.X ))+ (Math.Abs(nidY- caseFourmi.Y )) ;
+               
                 return;
             }
 
@@ -127,7 +147,6 @@ namespace Fourmiliere
                     {
                         pheroMax = ca.pheromone_nid;
                         index = cpt;
-                     
                     }
                     cpt++;
 

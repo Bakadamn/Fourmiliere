@@ -70,7 +70,7 @@ namespace Fourmiliere
             posNid[1] =  rndY;
 
             posNidStatic[0] = rndX;
-            posNidStatic[1] = rndX;
+            posNidStatic[1] = rndY;
         }
        
 
