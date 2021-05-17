@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace Fourmiliere
 {
@@ -6,14 +7,13 @@ namespace Fourmiliere
     {
         static void Main(string[] args)
         {
-            
-            
 
+            //Start();
 
             string affichage = "";
             Tableau tab = new Tableau(20, 20);
 
-            Console.SetWindowSize(Tableau.tableau.GetLength(1)*3+1, Tableau.tableau.GetLength(0)*2+3);
+            //Console.SetWindowSize(Tableau.tableau.GetLength(1)*3+1, Tableau.tableau.GetLength(0)*2+3);
             tab.InitialisationTableau();
             tab.InitNid();
             tab.InitPhero(tab.posNid[0], tab.posNid[1]);
@@ -24,15 +24,24 @@ namespace Fourmiliere
 
 
 
-            affichage = affichGrille(affichage);
-            Console.WriteLine(affichage);
-            Console.WriteLine();
-            Console.ReadKey();
-            //FichierTxt.creationFichierTxt();  //mis en commentaire pour dev
+            //affichage = affichGrille(affichage);
+            //Console.WriteLine(affichage);
+            //Console.WriteLine();
+            //Console.ReadKey();
+            FichierTxt.creationFichierTxt();  //creation fichier TXT de la simulation
             Tour.TourDeJeu();
 
             
         }
+
+        private static void Start()
+        {
+                Process.Start("https://google.fr");
+        }
+
+
+
+
 
         public static string affichGrille(string affichage)
         {

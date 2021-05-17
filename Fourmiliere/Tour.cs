@@ -4,16 +4,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Fourmiliere
 {
     public static class Tour
     {
-        public static int nbTours = 0;
+        public static int nbTours = 1;
+        public static int nbToursMax = 25;
 
         public static void TourDeJeu()
         {
-            while(MapContientSucre())
+            while(MapContientSucre() && nbTours<=nbToursMax+1)
             {
+                if (nbTours == (nbToursMax+1))
+                {
+                    //Console.WriteLine();
+                    //Console.WriteLine("Fin du jeu");
+                    //Console.ReadKey();
+                    return;
+                    
+                }
+
                 foreach (Case ca in Tableau.tableau)
                 {
                     if (ca.fourmis != null)
@@ -36,15 +47,17 @@ namespace Fourmiliere
                         ca.pheromone_sucre--;
                     }
                 }
-                Console.WriteLine();
-                Console.ReadKey();
-                Console.WriteLine();
+
+               
+                //Console.WriteLine();
+                //Console.ReadKey();
+                //Console.WriteLine("Tour " + nbTours);
 
                 string affichage = "";
-                affichage = Program.affichGrille(affichage);
-                Console.WriteLine(affichage);
+                //affichage = Program.affichGrille(affichage);
+                //Console.WriteLine(affichage);
                 nbTours++;
-                //FichierTxt.AjoutAuFichier();  //en commentaire pour dev
+                FichierTxt.AjoutAuFichier();  //en commentaire pour dev
             }
         }
 
