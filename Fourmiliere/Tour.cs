@@ -12,9 +12,9 @@ namespace Fourmiliere
 
         public static void TourDeJeu()
         {
-            while(MapContientSucre())
+            while(MapContientSucre() && nbTours<1000)
             {
-                foreach (Case ca in Tableau.tableau)
+                foreach (Case ca in RefTableau.tab)
                 {
                     if (ca.fourmis != null)
                     {
@@ -22,7 +22,7 @@ namespace Fourmiliere
                     }
                 }
 
-                foreach (Case ca in Tableau.tableau)
+                foreach (Case ca in RefTableau.tab)
                 {
                     if(ca.fourmis!=null && ca.fourmis.sestDeplacee == false)
                     {
@@ -36,16 +36,25 @@ namespace Fourmiliere
                         ca.pheromone_sucre--;
                     }
                 }
-                Console.WriteLine();
-                Console.ReadKey();
-                Console.WriteLine();
+               //Console.WriteLine();
+               //Console.ReadKey();
+               //Console.WriteLine();
 
-                string affichage = "";
-                affichage = Program.affichGrille(affichage);
-                Console.WriteLine(affichage);
+               //string affichage = "";
+               //affichage = Program.affichGrille(affichage);
+               //Console.WriteLine(affichage);
+
                 nbTours++;
-                //FichierTxt.AjoutAuFichier();  //en commentaire pour dev
+                if (nbTours % 2 == 0 && Fourmis.nbrFourmis<20)
+                    RefTableau.classeTableau.InitFourmis(1);
+
+                FichierTxt.AjoutAuFichier();  //en commentaire pour dev
             }
+
+            FichierTxt.AjoutFinDeFichier();
+
+
+
         }
 
 
@@ -54,7 +63,7 @@ namespace Fourmiliere
         private static bool MapContientSucre()
         {
             
-            foreach(Case ca in Tableau.tableau)
+            foreach(Case ca in RefTableau.tab)
             {
                 if(ca.nombre_sucre > 0)
                 {

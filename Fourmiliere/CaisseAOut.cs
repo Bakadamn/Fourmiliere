@@ -37,8 +37,8 @@ namespace Fourmiliere
         }
         public static bool EstDansLeTableau(int x, int y) //verifie que les coordonnées sont bien dans les limites du tableau
         {
-            if (x < Tableau.tableau.GetLength(0) && x >= 0 &&
-                y < Tableau.tableau.GetLength(1) && y>= 0) 
+            if (x < RefTableau.tab.GetLength(0) && x >= 0 &&
+                y < RefTableau.tab.GetLength(1) && y>= 0) 
             {                                       
                 return true;
             }
@@ -50,7 +50,7 @@ namespace Fourmiliere
 
         public static bool CaseEstSansFourmis(int x, int y) //verifie si une case ne contient pas de fourmis
         { 
-            if (Tableau.tableau[x, y].fourmis == null)
+            if (RefTableau.tab[x, y].fourmis == null)
                 return true;
             else
                 return false;
@@ -63,13 +63,13 @@ namespace Fourmiliere
             for (int i = 0; i < 3; i++)
             {
                 if (CaisseAOut.EstDansLeTableau(x - 1 + i, y - 1))
-                    liste.Add(Tableau.tableau[x - 1 + i, y - 1]);
+                    liste.Add(RefTableau.tab[x - 1 + i, y - 1]);
 
                 if (CaisseAOut.EstDansLeTableau(x - 1 + i, y + 1))
-                    liste.Add(Tableau.tableau[x - 1 + i, y + 1]);
+                    liste.Add(RefTableau.tab[x - 1 + i, y + 1]);
 
                 if (CaisseAOut.EstDansLeTableau(x - 1 + i, y) && i != 1)
-                    liste.Add(Tableau.tableau[x - 1 + i, y]);
+                    liste.Add(RefTableau.tab[x - 1 + i, y]);
             }
 
 

@@ -10,25 +10,39 @@ namespace Fourmiliere
 {
     public class FichierTxt
     {
-        static string path = @"C:\Users\admin\Desktop\Projet fourmiliere\Projet Fourmis ADAI\Bakadamn\Fourmiliere\simulation.txt";
+        static string path = @"C:\Fichiers\Fourmis\simulation.txt";
+
+        private static List<String> ligne = new List<string>();
         public static void creationFichierTxt()
         {
 
-            using (StreamWriter sw = File.CreateText(path))
-            {
-                sw.WriteLine((Tableau.tableau.GetUpperBound(0)+1) + " " + (Tableau.tableau.GetUpperBound(1)+1) + " " + Tour.nbTours);
-            }
+                ligne.Add((RefTableau.tab.GetUpperBound(0) + 1) + " " + (RefTableau.tab.GetUpperBound(1) + 1) + " " + Tour.nbTours);
         }
 
         public static void AjoutAuFichier()
         {
-            using (StreamWriter sw = File.AppendText(path))
-            {
-                foreach (Case ca in Tableau.tableau)
+            
+                foreach (Case ca in RefTableau.tab)
                 {
-                    sw.WriteLine(ca.contenu + " " + ca.nombre_sucre + " " + ca.pheromone_nid + " " + ca.pheromone_sucre);
+                    if(ca.fourmis!=null)
+                    ligne.Add("F" + " " + ca.nombre_sucre + " " + ca.pheromone_nid + " " + ca.pheromone_sucre);
+                    else
+                    ligne.Add(ca.contenu + " " + ca.nombre_sucre + " " + ca.pheromone_nid + " " + ca.pheromone_sucre);
                 }
-            }
+            
+        }
+        public static void AjoutFinDeFichier()
+        {
+     
+            using (StreamWriter sw = File.CreateText(path))
+            {
+                sw.WriteLine((RefTableau.tab.GetUpperBound(0) + 1) + " " + (RefTableau.tab.GetUpperBound(1) + 1) + " " + Tour.nbTours);
+
+                foreach(string lign in ligne)
+                {
+                    sw.WriteLine(lign);
+                }
+            }           
         }
 
     }

@@ -2,13 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading.Tasks; 
 
 namespace Fourmiliere
 {
+    public static class RefTableau
+    {
+        public static Case[,] tab;
+        public static Tableau classeTableau;
+    }
     public class Tableau
     {
-        public static Case[,] tableau;
+        
         Random rnd = new Random();
         public int[] posNid = new int[2];
         public int largeur;
@@ -19,14 +24,14 @@ namespace Fourmiliere
       
         public Tableau()
         {
-            tableau = new Case[20, 20];
+            RefTableau.tab = new Case[20, 20];
             largeur = 20;
             hauteur = 20;
         }
 
         public Tableau(int X, int Y)
         {
-            tableau = new Case[X, Y];
+            RefTableau.tab = new Case[X, Y];
             largeur = X;
             hauteur = Y;
         }
@@ -34,12 +39,12 @@ namespace Fourmiliere
 
         public void InitialisationTableau()
         {
-            for (int i = 0; i < tableau.GetLength(0); i++)
+            for (int i = 0; i < RefTableau.tab.GetLength(0); i++)
             {
-                for (int y = 0; y < tableau.GetLength(1); y++)
+                for (int y = 0; y < RefTableau.tab.GetLength(1); y++)
                 {
                     Case caseTab = new Case(i, y);
-                    tableau[i, y] = caseTab;
+                    RefTableau.tab[i, y] = caseTab;
                 }
               
             }
@@ -52,19 +57,19 @@ namespace Fourmiliere
             int rndY = 0;
             while (!estVide)
             {
-                rndX = rnd.Next(0, tableau.GetLength(0)-1);
-                rndY = rnd.Next(0, tableau.GetLength(1)-1);
+                rndX = rnd.Next(0, RefTableau.tab.GetLength(0)-1);
+                rndY = rnd.Next(0, RefTableau.tab.GetLength(1)-1);
 
-               if(CaisseAOut.CaseEstVide(tableau[rndX, rndY]))
+               if(CaisseAOut.CaseEstVide(RefTableau.tab[rndX, rndY]))
                 {
                     estVide = true;
                 }
             }
 
-            tableau[rndX, rndY].contenu = 'N';
-            tableau[rndX +1, rndY].contenu = 'N';
-            tableau[rndX, rndY + 1].contenu = 'N';
-            tableau[rndX + 1, rndY + 1].contenu = 'N';
+            RefTableau.tab[rndX, rndY].contenu = 'N';
+            RefTableau.tab[rndX +1, rndY].contenu = 'N';
+            RefTableau.tab[rndX, rndY + 1].contenu = 'N';
+            RefTableau.tab[rndX + 1, rndY + 1].contenu = 'N';
 
             posNid[0] =  rndX;
             posNid[1] =  rndY;
@@ -84,15 +89,15 @@ namespace Fourmiliere
 
             for (int i = 0; i < NbrSucre; i++)
             {
-                rndX = rnd.Next(0, tableau.GetLength(0) - 1);
-                rndY = rnd.Next(0, tableau.GetLength(1) - 1);
-                while (tableau[rndX, rndY].contenu != '0')
+                rndX = rnd.Next(0, RefTableau.tab.GetLength(0) - 1);
+                rndY = rnd.Next(0, RefTableau.tab.GetLength(1) - 1);
+                while (RefTableau.tab[rndX, rndY].contenu != '0')
                 {
-                    rndX = rnd.Next(0, tableau.GetLength(0) - 1);
-                    rndY = rnd.Next(0, tableau.GetLength(1) - 1);
+                    rndX = rnd.Next(0, RefTableau.tab.GetLength(0) - 1);
+                    rndY = rnd.Next(0, RefTableau.tab.GetLength(1) - 1);
                 }
-                tableau[rndX, rndY].contenu = 'S';
-                tableau[rndX, rndY].nombre_sucre = 9; //aléatoire?
+                RefTableau.tab[rndX, rndY].contenu = 'S';
+                RefTableau.tab[rndX, rndY].nombre_sucre = 9; //aléatoire?
             }
         }
 
@@ -104,14 +109,14 @@ namespace Fourmiliere
 
             for (int i= 0; i<NbrCailloux; i++)
             {
-                rndX = rnd.Next(0, tableau.GetLength(0) - 1);
-                rndY = rnd.Next(0, tableau.GetLength(1) - 1);
-                while (tableau[rndX, rndY].contenu != '0')
+                rndX = rnd.Next(0, RefTableau.tab.GetLength(0) - 1);
+                rndY = rnd.Next(0, RefTableau.tab.GetLength(1) - 1);
+                while (RefTableau.tab[rndX, rndY].contenu != '0')
                 {
-                    rndX = rnd.Next(0, tableau.GetLength(0) - 1);
-                    rndY = rnd.Next(0, tableau.GetLength(1) - 1);
+                    rndX = rnd.Next(0, RefTableau.tab.GetLength(0) - 1);
+                    rndY = rnd.Next(0, RefTableau.tab.GetLength(1) - 1);
                 }
-                tableau[rndX, rndY].contenu = 'C';
+                RefTableau.tab[rndX, rndY].contenu = 'C';
             }
         }
 
@@ -142,9 +147,9 @@ namespace Fourmiliere
                 int rndCase = rnd.Next(1, posPossible.Count());
                 rndCase--;
                 if(CaisseAOut.EstDansLeTableau(posPossible[rndCase][0], posPossible[rndCase][1]))
-                    if (CaisseAOut.CaseValidePourFourmis(Tableau.tableau[posPossible[rndCase][0], posPossible[rndCase][1]]))
+                    if (CaisseAOut.CaseValidePourFourmis(RefTableau.tab[posPossible[rndCase][0], posPossible[rndCase][1]]))
                     {
-                        tableau[posPossible[rndCase][0], posPossible[rndCase][1]].fourmis = new Fourmis(tableau[posPossible[rndCase][0], posPossible[rndCase][1]]);
+                        RefTableau.tab[posPossible[rndCase][0], posPossible[rndCase][1]].fourmis = new Fourmis(RefTableau.tab[posPossible[rndCase][0], posPossible[rndCase][1]]);
                         fourmiCree = true;
                         return;
                     }
@@ -153,9 +158,9 @@ namespace Fourmiliere
 
             foreach(int[] possibilite in posPossible)
             {
-                if (CaisseAOut.CaseValidePourFourmis(Tableau.tableau[possibilite[0],possibilite[1]] )) 
+                if (CaisseAOut.CaseValidePourFourmis(RefTableau.tab[possibilite[0],possibilite[1]] )) 
                 {
-                    tableau[possibilite[0], possibilite[1]].fourmis = new Fourmis(tableau[possibilite[0], possibilite[1]]);
+                    RefTableau.tab[possibilite[0], possibilite[1]].fourmis = new Fourmis(RefTableau.tab[possibilite[0], possibilite[1]]);
                     //mettre un ptit random
                     return;
                 }
@@ -192,30 +197,30 @@ namespace Fourmiliere
 
                 if (CaisseAOut.EstDansLeTableau(Xactuel, Yactuel))
                 {
-                    tableau[Xactuel, Yactuel].pheromone_nid = i;
+                    RefTableau.tab[Xactuel, Yactuel].pheromone_nid = i;
                 }
                 if (CaisseAOut.EstDansLeTableau(XnegActuel, YnegActuel) )
                 {
-                    tableau[XnegActuel, YnegActuel].pheromone_nid = i;
+                    RefTableau.tab[XnegActuel, YnegActuel].pheromone_nid = i;
                 }
 
                 for (int dec = 1; dec <= decalage; dec++)
                 {
                     if (CaisseAOut.EstDansLeTableau(Xactuel + dec, Yactuel))
                     {
-                        tableau[Xactuel + dec, Yactuel].pheromone_nid = i;
+                        RefTableau.tab[Xactuel + dec, Yactuel].pheromone_nid = i;
                     }
                     if (CaisseAOut.EstDansLeTableau(Xactuel,Yactuel + dec))
                     {
-                        tableau[Xactuel, Yactuel + dec].pheromone_nid = i;
+                        RefTableau.tab[Xactuel, Yactuel + dec].pheromone_nid = i;
                     }
                     if (CaisseAOut.EstDansLeTableau(XnegActuel - dec, YnegActuel))
                     {
-                        tableau[XnegActuel - dec, YnegActuel].pheromone_nid = i;
+                        RefTableau.tab[XnegActuel - dec, YnegActuel].pheromone_nid = i;
                     }
                     if (CaisseAOut.EstDansLeTableau(XnegActuel, YnegActuel - dec))
                     {
-                        tableau[XnegActuel, YnegActuel - dec].pheromone_nid = i;
+                        RefTableau.tab[XnegActuel, YnegActuel - dec].pheromone_nid = i;
                     }
                 }
 

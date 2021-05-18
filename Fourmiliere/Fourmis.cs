@@ -15,6 +15,7 @@ namespace Fourmiliere
 
         private Random rnd = new Random();
 
+        public static int nbrFourmis = 0;
 
 
         private bool chercheSucre;
@@ -29,6 +30,7 @@ namespace Fourmiliere
             caseFourmi = ca;
             porteSucre = false;
             chercheSucre = true;
+            nbrFourmis++;
         }
 
 
@@ -89,6 +91,8 @@ namespace Fourmiliere
 
 
                 listeCaseSucre[0].nombre_sucre--;
+                if (listeCaseSucre[0].nombre_sucre <= 0)
+                    listeCaseSucre[0].contenu = '0';
                 porteSucre = true;
                 chercheSucre = false;
                 chercheNid = true;
@@ -213,7 +217,7 @@ namespace Fourmiliere
                 }
                 while (!CaisseAOut.EstDansLeTableau(x, y));
             }
-            while (!CaisseAOut.CaseValidePourFourmis(Tableau.tableau[x, y]));
+            while (!CaisseAOut.CaseValidePourFourmis(RefTableau.tab[x, y]));
 
             DeplacerFourmis(x, y);
 
@@ -222,9 +226,9 @@ namespace Fourmiliere
         private void DeplacerFourmis(int x, int y)
         {
             
-            Tableau.tableau[caseFourmi.X, caseFourmi.Y].fourmis = null;
-            Tableau.tableau[x, y].fourmis = this;
-            caseFourmi = Tableau.tableau[x, y];
+            RefTableau.tab[caseFourmi.X, caseFourmi.Y].fourmis = null;
+            RefTableau.tab[x, y].fourmis = this;
+            caseFourmi = RefTableau.tab[x, y];
         }
 
 

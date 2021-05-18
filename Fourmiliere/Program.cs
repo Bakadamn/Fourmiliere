@@ -11,24 +11,24 @@ namespace Fourmiliere
 
 
             string affichage = "";
-            Tableau tab = new Tableau(20, 20);
+            RefTableau.classeTableau = new Tableau(20, 20);
 
-            Console.SetWindowSize(Tableau.tableau.GetLength(1)*3+1, Tableau.tableau.GetLength(0)*2+3);
-            tab.InitialisationTableau();
-            tab.InitNid();
-            tab.InitPhero(tab.posNid[0], tab.posNid[1]);
-            tab.InitSucre(10);
-            tab.InitCailloux(5);
-            tab.InitFourmis(1);
-            tab.InitFourmis(1);
-
+            Console.SetWindowSize(RefTableau.tab.GetLength(1)*3+1, RefTableau.tab.GetLength(0)*2+3);
+            RefTableau.classeTableau.InitialisationTableau();
+            RefTableau.classeTableau.InitNid();
+            RefTableau.classeTableau.InitPhero(RefTableau.classeTableau.posNid[0], RefTableau.classeTableau.posNid[1]);
+            RefTableau.classeTableau.InitSucre(10);
+            RefTableau.classeTableau.InitCailloux(5);
+            RefTableau.classeTableau.InitFourmis(1);
 
 
-            affichage = affichGrille(affichage);
-            Console.WriteLine(affichage);
-            Console.WriteLine();
-            Console.ReadKey();
-            //FichierTxt.creationFichierTxt();  //mis en commentaire pour dev
+
+            //affichage = affichGrille(affichage);
+            //Console.WriteLine(affichage);
+            //Console.WriteLine();
+            //Console.ReadKey();
+
+            FichierTxt.creationFichierTxt();  //mis en commentaire pour dev
             Tour.TourDeJeu();
 
             
@@ -37,16 +37,16 @@ namespace Fourmiliere
         public static string affichGrille(string affichage)
         {
 
-            for (int i = 0; i < Tableau.tableau.GetLength(0); i++)
+            for (int i = 0; i < RefTableau.tab.GetLength(0); i++)
             {
-                for (int y = 0; y < Tableau.tableau.GetLength(1); y++)
+                for (int y = 0; y < RefTableau.tab.GetLength(1); y++)
                 {
                     Console.ForegroundColor = ConsoleColor.White;
                     string aff = "";
                     Console.Write("|");
-                    if (Tableau.tableau[i, y].contenu == '0')
+                    if (RefTableau.tab[i, y].contenu == '0')
                     {
-                        if (Tableau.tableau[i, y].fourmis != null)
+                        if (RefTableau.tab[i, y].fourmis != null)
                         {
                             Console.ForegroundColor = ConsoleColor.Green;
                             aff = "F ";
@@ -55,28 +55,28 @@ namespace Fourmiliere
                         
                         else
                         {
-                            if(Tableau.tableau[i,y].pheromone_sucre>0)
+                            if(RefTableau.tab[i,y].pheromone_sucre>0)
                             {
                                 Console.ForegroundColor = ConsoleColor.Cyan;
-                                aff = Tableau.tableau[i, y].pheromone_sucre.ToString();
+                                aff = RefTableau.tab[i, y].pheromone_sucre.ToString();
                             }
                             else
-                            aff=Tableau.tableau[i, y].pheromone_nid.ToString();
+                            aff=RefTableau.tab[i, y].pheromone_nid.ToString();
                         }
                     }
-                    else if (Tableau.tableau[i, y].nombre_sucre > 0)
+                    else if (RefTableau.tab[i, y].nombre_sucre > 0)
                     {
                         Console.ForegroundColor = ConsoleColor.Blue;
-                        aff = Tableau.tableau[i, y].nombre_sucre.ToString();
+                        aff = RefTableau.tab[i, y].nombre_sucre.ToString();
                     }
                     else
                     {
-                        if (Tableau.tableau[i, y].contenu == 'N')
+                        if (RefTableau.tab[i, y].contenu == 'N')
                             Console.ForegroundColor = ConsoleColor.DarkRed;
-                        else if (Tableau.tableau[i, y].contenu == 'C')
+                        else if (RefTableau.tab[i, y].contenu == 'C')
                             Console.ForegroundColor = ConsoleColor.Magenta;
 
-                        aff = Tableau.tableau[i, y].contenu.ToString();
+                        aff = RefTableau.tab[i, y].contenu.ToString();
                     }
 
                     if(aff.Length == 1)
@@ -87,7 +87,7 @@ namespace Fourmiliere
                 }
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.Write("|\n");
-                for(int a = 0; a< Tableau.tableau.GetLength(1); a++)
+                for(int a = 0; a< RefTableau.tab.GetLength(1); a++)
                 {
                     Console.Write("---");
                 }
