@@ -24,8 +24,10 @@ namespace Fourmiliere
             
                 foreach (Case ca in RefTableau.tab)
                 {
-                    if(ca.fourmis!=null)
+                    if(ca.fourmis!=null && ca.fourmis.porteSucre)
                     ligne.Add("F" + " " + ca.nombre_sucre + " " + ca.pheromone_nid + " " + ca.pheromone_sucre);
+                    else if(ca.fourmis!=null && !ca.fourmis.porteSucre)
+                    ligne.Add("f" + " " + ca.nombre_sucre + " " + ca.pheromone_nid + " " + ca.pheromone_sucre);
                     else
                     ligne.Add(ca.contenu + " " + ca.nombre_sucre + " " + ca.pheromone_nid + " " + ca.pheromone_sucre);
                 }
