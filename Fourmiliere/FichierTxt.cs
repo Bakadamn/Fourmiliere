@@ -16,7 +16,7 @@ namespace Fourmiliere
         public static void creationFichierTxt()
         {
 
-                ligne.Add((RefTableau.tab.GetUpperBound(0) + 1) + " " + (RefTableau.tab.GetUpperBound(1) + 1) + " " + Tour.nbTours);
+               // ligne.Add((RefTableau.tab.GetUpperBound(0) + 1) + " " + (RefTableau.tab.GetUpperBound(1) + 1) + " " + Tour.nbTours);
         }
 
         public static void AjoutAuFichier()
