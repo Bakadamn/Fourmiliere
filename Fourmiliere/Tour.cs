@@ -45,8 +45,8 @@ namespace Fourmiliere
                Console.WriteLine(affichage);
 
                 nbTours++;
-                if (nbTours % 2 == 0 && Fourmis.nbrFourmis<20)
-                 //   RefTableau.classeTableau.InitFourmis(1);
+                if (nbTours % 2 == 0 && Fourmis.nbrFourmis<10)
+                    RefTableau.classeTableau.InitFourmis(1);
 
                 FichierTxt.AjoutAuFichier();  //en commentaire pour dev
             }

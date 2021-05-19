@@ -236,10 +236,14 @@ namespace Fourmiliere
 
         private void DeplacerFourmis(int x, int y)
         {
+            if (CaisseAOut.CaseValidePourFourmis(RefTableau.tab[x,y]))
+            {
+                RefTableau.tab[x, y].fourmis = this;
+                
+                RefTableau.tab[caseFourmi.X, caseFourmi.Y].fourmis = null;
+                caseFourmi = RefTableau.tab[x, y];
+            }
             
-            RefTableau.tab[caseFourmi.X, caseFourmi.Y].fourmis = null;
-            RefTableau.tab[x, y].fourmis = this;
-            caseFourmi = RefTableau.tab[x, y];
         }
 
 
@@ -261,28 +265,25 @@ namespace Fourmiliere
             {
                 int distX = 0;
                 int distY = 0;
+
+
                 if (c.X > nidX)
                     distX = c.X - nidX;
                 else
                     distX = nidX - c.X;
+
 
                 if (c.Y > nidY)
                     distY = c.Y - nidY;
                 else
                     distY = nidY - c.Y;
 
-                if (distX > distY)
-                    if (distanceMin > distX)
-                    {
-                        casePlusProche = c;
-                        distanceMin = distX;
-                    }
-                else
-                    if (distanceMin > distY)
-                    {
-                        casePlusProche = c;
-                        distanceMin = distY;
-                    }
+
+                if(distX+distY<distanceMin)
+                {
+                    casePlusProche = c;
+                    distanceMin = distX+distY;
+                }
 
             }
             return casePlusProche;
