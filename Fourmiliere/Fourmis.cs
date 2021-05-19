@@ -142,9 +142,12 @@ namespace Fourmiliere
             }
             else if(chercheNid && listePheroNid.Count()>0) //La fourmi suit la piste du Nid
             {
-                int pheroMax = 0; //a faire : choisir la case la plus proche du nid si égalité de pheromone
+                int pheroMax = 0;
                 int index = -1;
                 int cpt = 0;
+
+                List<Case> listePheroNidMax = new List<Case>();
+                
                 foreach (Case ca in listePheroNid)
                 {
                     if (ca.pheromone_nid > pheroMax && CaisseAOut.CaseValidePourFourmis(ca))
@@ -153,12 +156,20 @@ namespace Fourmiliere
                         index = cpt;
                     }
                     cpt++;
+                }
+                foreach (Case ca in listePheroNid)
+                {
+                    if (ca.pheromone_nid == pheroMax)
+                    {
+                        listePheroNidMax.Add(ca);
+                    }
 
                 }
+                Case caseFinale = ChoixCaseProcheNid(listePheroNidMax);
                 if (index > -1)
                 {
                     DepotDePheromoneSucre();
-                    DeplacerFourmis(listePheroNid[index].X, listePheroNid[index].Y);
+                    DeplacerFourmis(caseFinale.X, caseFinale.Y);
                     return;
                 }
                 else
@@ -239,6 +250,43 @@ namespace Fourmiliere
             pheroSucreVal--;
         }
 
+
+        private Case ChoixCaseProcheNid(List<Case> casesPotentielles)
+        {
+            Case casePlusProche = casesPotentielles[0];
+            int distanceMin = 999;
+            int nidX = Tableau.posNidStatic[0];
+            int nidY = Tableau.posNidStatic[1];
+            foreach (Case c in casesPotentielles)
+            {
+                int distX = 0;
+                int distY = 0;
+                if (c.X > nidX)
+                    distX = c.X - nidX;
+                else
+                    distX = nidX - c.X;
+
+                if (c.Y > nidY)
+                    distY = c.Y - nidY;
+                else
+                    distY = nidY - c.Y;
+
+                if (distX > distY)
+                    if (distanceMin > distX)
+                    {
+                        casePlusProche = c;
+                        distanceMin = distX;
+                    }
+                else
+                    if (distanceMin > distY)
+                    {
+                        casePlusProche = c;
+                        distanceMin = distY;
+                    }
+
+            }
+            return casePlusProche;
+        }
       
 
     }

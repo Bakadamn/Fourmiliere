@@ -12,7 +12,7 @@ namespace Fourmiliere
 
         public static void TourDeJeu()
         {
-            while(MapContientSucre() && nbTours<1000)
+            while(MapContientSucre() && nbTours<500)
             {
                 foreach (Case ca in RefTableau.tab)
                 {
@@ -36,17 +36,17 @@ namespace Fourmiliere
                         ca.pheromone_sucre--;
                     }
                 }
-               //Console.WriteLine();
-               //Console.ReadKey();
-               //Console.WriteLine();
+               Console.WriteLine();
+               Console.ReadKey();
+               Console.WriteLine();
 
-               //string affichage = "";
-               //affichage = Program.affichGrille(affichage);
-               //Console.WriteLine(affichage);
+               string affichage = "";
+               affichage = Program.affichGrille(affichage);
+               Console.WriteLine(affichage);
 
                 nbTours++;
                 if (nbTours % 2 == 0 && Fourmis.nbrFourmis<20)
-                    RefTableau.classeTableau.InitFourmis(1);
+                 //   RefTableau.classeTableau.InitFourmis(1);
 
                 FichierTxt.AjoutAuFichier();  //en commentaire pour dev
             }
