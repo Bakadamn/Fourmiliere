@@ -97,7 +97,7 @@ namespace Fourmiliere
                     rndY = rnd.Next(0, RefTableau.tab.GetLength(1) - 1);
                 }
                 RefTableau.tab[rndX, rndY].contenu = 'S';
-                RefTableau.tab[rndX, rndY].nombre_sucre = 9; //aléatoire?
+                RefTableau.tab[rndX, rndY].nombre_sucre = 9; 
             }
         }
 

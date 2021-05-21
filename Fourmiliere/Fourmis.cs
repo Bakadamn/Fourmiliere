@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 
@@ -22,7 +20,6 @@ namespace Fourmiliere
         private bool chercheNid;
         public Case caseFourmi;
 
-        private int distanceNid;
         private int pheroSucreVal;
 
         public Fourmis(Case ca)
@@ -81,22 +78,25 @@ namespace Fourmiliere
                 else
                     distanceY = caseFourmi.Y - nidY;
 
-                //La valeur du phéromone sucre est la distance entre le nid et le sucre fois deux (le temps de l'allez-retour) + 3 (reste trois tours supplémentaire)
+                //La valeur du phéromone sucre est la distance entre le nid et le sucre fois deux (le temps de l'allez-retour) + 3 (plus trois tours supplémentaire)
                 
                 if (distanceX > distanceY)
                     pheroSucreVal = distanceX*2+3;
                 else
                     pheroSucreVal = distanceY*2+3;
-                
 
 
-                listeCaseSucre[0].nombre_sucre--;
-                if (listeCaseSucre[0].nombre_sucre <= 0)
-                    listeCaseSucre[0].contenu = '0';
-                porteSucre = true;
-                chercheSucre = false;
-                chercheNid = true;
-               
+
+                if (listeCaseSucre[0].nombre_sucre > 0)
+                {
+                    listeCaseSucre[0].nombre_sucre--;
+                    if (listeCaseSucre[0].nombre_sucre <= 0)
+                        listeCaseSucre[0].contenu = '0';
+                    porteSucre = true;
+                    chercheSucre = false;
+                    chercheNid = true;
+
+                }
                 return;
             }
 
