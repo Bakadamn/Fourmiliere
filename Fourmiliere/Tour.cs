@@ -29,6 +29,7 @@ namespace Fourmiliere
                         //méthode fourmis
                         ca.fourmis.sestDeplacee = true;
                         ca.fourmis.ChoixDeLaction();
+
                         
                     }
                     if(ca.pheromone_sucre>0)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace Fourmiliere
 {
@@ -31,7 +32,13 @@ namespace Fourmiliere
             FichierTxt.creationFichierTxt();  //mis en commentaire pour dev
             Tour.TourDeJeu();
 
-            
+            Start();
+        }
+
+
+        public static void Start()
+        {
+            Process.Start("https://localhost/Fourmiliere/index.php");
         }
 
         public static string affichGrille(string affichage)

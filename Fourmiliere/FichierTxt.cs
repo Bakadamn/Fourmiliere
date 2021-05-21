@@ -4,14 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Resources;
 
 
 namespace Fourmiliere
 {
     public class FichierTxt
     {
-        static string path = @"C:\Fichiers\Fourmis\simulation.txt";
-
+        
+        static string path = @"C:\xampp\xampp\htdocs\Fourmiliere\media\simulation.txt";
+        
         private static List<String> ligne = new List<string>();
         public static void creationFichierTxt()
         {
