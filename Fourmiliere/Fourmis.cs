@@ -271,7 +271,7 @@ namespace Fourmiliere
                     distX = c.X - nidX;
                 else
                     distX = nidX - c.X;
-
+                
 
                 if (c.Y > nidY)
                     distY = c.Y - nidY;
