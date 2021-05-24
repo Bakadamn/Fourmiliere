@@ -1,15 +1,36 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace Fourmiliere
 {
     class Program
     {
+        [STAThread]
         static void Main(string[] args)
         {
-            FichierTxt.InitialisationFichierTexte();
 
-            string affichage = "";
+            Console.WriteLine("Choisissez une méthode de génération : \n"+
+                "1.Créer la simulation et l'afficher dans un navigateur web\n" +
+                "2.Créer la simulation et l'afficher dans la console\n" +
+                "3.Créer le fichier TXT uniquement\n");
+
+            char reponse = ' ';
+
+            while (reponse!='1' && reponse != '2' && reponse != '3')
+            {
+                reponse = Console.ReadKey().KeyChar;
+                
+            }
+            if (reponse == '3')
+                FichierTxt.ChoixFolderFichierTxt();
+            else
+                FichierTxt.InitialisationFichierTexte();
+
+
+            bool GenerationConsole = false;
+
+
             RefTableau.classeTableau = new Tableau(20, 20);
 
             Console.SetWindowSize(RefTableau.tab.GetLength(1)*3+1, RefTableau.tab.GetLength(0)*2+3);
@@ -20,16 +41,22 @@ namespace Fourmiliere
             RefTableau.classeTableau.InitCailloux(5);
             RefTableau.classeTableau.InitFourmis(1);
 
-
-
-            //affichage = affichGrille(affichage);
-            //Console.WriteLine(affichage);
-            //Console.WriteLine();
-            //Console.ReadKey();
+            if(reponse == '2')
+            {
+                GenerationConsole = true;
+                string affichage = "";
+                affichage = affichGrille(affichage);
+                Console.WriteLine(affichage);
+                Console.WriteLine();
+                Console.ReadKey();
+            }
 
             FichierTxt.creationFichierTxt();  //mis en commentaire pour dev
-            Tour.TourDeJeu();
 
+            Tour.TourDeJeu(GenerationConsole);
+
+
+            if(reponse == '1')
             Start();
         }
 

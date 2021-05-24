@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
-using System.Resources;
+using System.Windows.Forms;
 
 
 namespace Fourmiliere
@@ -33,7 +30,20 @@ namespace Fourmiliere
                     File.Delete(path);
             }
         }
-
+        [STAThread]
+        public static void ChoixFolderFichierTxt()
+        {
+            
+            FolderBrowserDialog fenetre = new FolderBrowserDialog();
+            if(fenetre.ShowDialog() == DialogResult.OK )
+            {
+                path = fenetre.SelectedPath+"//simulation.txt";
+            }
+            else 
+            {
+                InitialisationFichierTexte();
+            }
+        }
 
         private static List<String> ligne = new List<string>();
         public static void creationFichierTxt()
