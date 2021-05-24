@@ -7,9 +7,7 @@ namespace Fourmiliere
     {
         static void Main(string[] args)
         {
-            
-            
-
+            FichierTxt.InitialisationFichierTexte();
 
             string affichage = "";
             RefTableau.classeTableau = new Tableau(20, 20);

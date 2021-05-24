@@ -11,9 +11,23 @@ namespace Fourmiliere
 {
     public class FichierTxt
     {
+        public int ah = 3;
         
-        static string path = @"C:\xampp\xampp\htdocs\Fourmiliere\media\simulation.txt";
-        
+
+        static string path;
+
+
+        public static void InitialisationFichierTexte()
+        {
+            if(System.Security.Principal.WindowsIdentity.GetCurrent().Name == "LAPTOP-9DANU7Q5\\cheva")
+            {
+                path = @"C:\xampp\htdocs\Fourmiliere\media\simulation.txt";
+            }
+            else
+                path = @"C:\xampp\xampp\htdocs\Fourmiliere\media\simulation.txt";
+        }
+
+
         private static List<String> ligne = new List<string>();
         public static void creationFichierTxt()
         {
