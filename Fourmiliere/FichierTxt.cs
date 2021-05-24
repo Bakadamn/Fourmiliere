@@ -22,9 +22,16 @@ namespace Fourmiliere
             if(System.Security.Principal.WindowsIdentity.GetCurrent().Name == "LAPTOP-9DANU7Q5\\cheva")
             {
                 path = @"C:\xampp\htdocs\Fourmiliere\media\simulation.txt";
+                if (File.Exists(path))
+                    File.Delete(path);
             }
             else
+            {
+
                 path = @"C:\xampp\xampp\htdocs\Fourmiliere\media\simulation.txt";
+                if (File.Exists(path))
+                    File.Delete(path);
+            }
         }
 
 

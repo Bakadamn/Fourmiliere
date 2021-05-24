@@ -250,8 +250,11 @@ namespace Fourmiliere
         private void DepotDePheromoneSucre()
         {
             caseFourmi.pheromone_sucre = pheroSucreVal;
-            pheroSucreVal--;
-            pheroSucreVal--;
+
+            if (pheroSucreVal > 0)
+                pheroSucreVal--;
+            if(pheroSucreVal > 0)
+                pheroSucreVal--;
         }
 
 
