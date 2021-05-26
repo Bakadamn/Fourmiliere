@@ -12,7 +12,7 @@ namespace Fourmiliere
 
         public static void TourDeJeu(bool ecritureConsole, int fourmisMaximum)
         {
-            while(MapContientSucre() && nbTours<500)
+            while(!SimulationEstTerminee() && nbTours<500)
             {
                 foreach (Case ca in RefTableau.tab)
                 {
@@ -54,6 +54,8 @@ namespace Fourmiliere
                     RefTableau.classeTableau.InitFourmis(1);
 
                 FichierTxt.AjoutAuFichier();  //en commentaire pour dev
+
+
             }
 
             FichierTxt.AjoutFinDeFichier();
@@ -62,8 +64,28 @@ namespace Fourmiliere
 
         }
 
+        private static bool SimulationEstTerminee()
+        {
+            if (!MapContientSucre())
+                if (!FourmisPortentDuSucre())
+                    return true;
+
+            return false;
+        }
 
 
+        private static bool FourmisPortentDuSucre()
+        {
+            foreach (Case ca in RefTableau.tab)
+            {
+                if (ca.fourmis != null)
+                {
+                    if(ca.fourmis.porteSucre)
+                    return true;
+                }
+            }
+            return false;
+        }
 
         private static bool MapContientSucre()
         {

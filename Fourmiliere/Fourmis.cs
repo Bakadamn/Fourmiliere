@@ -246,6 +246,7 @@ namespace Fourmiliere
             else
             {
                 pheroSucreVal += 2;
+                DeplacementAleatoire();
             }
 
         }

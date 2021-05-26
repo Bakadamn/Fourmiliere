@@ -124,25 +124,23 @@ namespace Fourmiliere
         public void InitFourmis(int fourmis)
         {
             List<int[]> posPossible = new List<int[]>();
-            
-            if (CaisseAOut.EstDansLeTableau(posNid[0]-1, 0) && (CaisseAOut.EstDansLeTableau(posNid[1] -1, 0)))
-            {
+
                 
-                posPossible.Add(CaisseAOut.DeuxValeurEnTableau(posNid[0] - 1, posNid[1] - 1));
-                posPossible.Add(CaisseAOut.DeuxValeurEnTableau(posNid[0] +2, posNid[1] +2));
-                for (int i = 1; i<4; i ++)
-                {
-                    posPossible.Add(CaisseAOut.DeuxValeurEnTableau(posNid[0] - 1 + i, posNid[1] - 1));
-                    posPossible.Add(CaisseAOut.DeuxValeurEnTableau(posNid[0] - 1 , posNid[1] - 1 + i ));
+            posPossible.Add(CaisseAOut.DeuxValeurEnTableau(posNid[0] - 1, posNid[1] - 1));
+            posPossible.Add(CaisseAOut.DeuxValeurEnTableau(posNid[0] +2, posNid[1] +2));
+            for (int i = 1; i<4; i ++)
+            {
+                posPossible.Add(CaisseAOut.DeuxValeurEnTableau(posNid[0] - 1 + i, posNid[1] - 1));
+                posPossible.Add(CaisseAOut.DeuxValeurEnTableau(posNid[0] - 1 , posNid[1] - 1 + i ));
 
-                    posPossible.Add(CaisseAOut.DeuxValeurEnTableau(posNid[0] + 2 - i, posNid[1] + 2));
-                    posPossible.Add(CaisseAOut.DeuxValeurEnTableau(posNid[0] + 2, posNid[1] + 2 - i));
-                }
+                posPossible.Add(CaisseAOut.DeuxValeurEnTableau(posNid[0] + 2 - i, posNid[1] + 2));
+                posPossible.Add(CaisseAOut.DeuxValeurEnTableau(posNid[0] + 2, posNid[1] + 2 - i));
             }
+            
 
-            bool fourmiCree = false;
+           
             if(posPossible.Count()>0)
-            while(!fourmiCree)
+            for(; ; )
             {
                 int rndCase = rnd.Next(1, posPossible.Count());
                 rndCase--;
@@ -150,22 +148,11 @@ namespace Fourmiliere
                     if (CaisseAOut.CaseValidePourFourmis(RefTableau.tab[posPossible[rndCase][0], posPossible[rndCase][1]]))
                     {
                         RefTableau.tab[posPossible[rndCase][0], posPossible[rndCase][1]].fourmis = new Fourmis(RefTableau.tab[posPossible[rndCase][0], posPossible[rndCase][1]]);
-                        fourmiCree = true;
+                     
                         return;
                     }
             }
 
-
-            foreach(int[] possibilite in posPossible)
-            {
-                if (CaisseAOut.CaseValidePourFourmis(RefTableau.tab[possibilite[0],possibilite[1]] )) 
-                {
-                    RefTableau.tab[possibilite[0], possibilite[1]].fourmis = new Fourmis(RefTableau.tab[possibilite[0], possibilite[1]]);
-                    //mettre un ptit random
-                    return;
-                }
-
-            }
         }
 
         public void InitPhero(int X, int Y)
