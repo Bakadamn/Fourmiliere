@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Fourmiliere
 {
-    public class Case
+    public class Case // la classe case, conforme au cahier des charges
     {
         public char contenu;
         public int nombre_sucre;
@@ -16,7 +16,7 @@ namespace Fourmiliere
         public int X;
         public int Y;
 
-        public Case(int x, int y)
+        public Case(int x, int y) // constructeur par défaut, inclut une position 
         {
             contenu = '0';
             X = x;

@@ -14,8 +14,9 @@ namespace Fourmiliere
         static string path;
 
 
-        public static void InitialisationFichierTexte()
+        public static void InitialisationFichierTexte() // initialisation du fichier texte, à placer dans le fichier HTdocs de Xampp
         {
+            //en fonction de sur quel pc on lance l'appli le chemin n'est pas le meme (nous étions deux à travailler sur le C#)
             if(System.Security.Principal.WindowsIdentity.GetCurrent().Name == "LAPTOP-9DANU7Q5\\cheva")
             {
                 path = @"C:\xampp\htdocs\Fourmiliere\media\simulation.txt";
@@ -31,7 +32,7 @@ namespace Fourmiliere
             }
         }
         [STAThread]
-        public static void ChoixFolderFichierTxt()
+        public static void ChoixFolderFichierTxt() //Fonction pour que l'utilisateur choisisse l'emplacement en cas de génération de texte seulement
         {
             
             FolderBrowserDialog fenetre = new FolderBrowserDialog();
@@ -46,15 +47,10 @@ namespace Fourmiliere
         }
 
         private static List<String> ligne = new List<string>();
-        public static void creationFichierTxt()
-        {
-
-               // ligne.Add((RefTableau.tab.GetUpperBound(0) + 1) + " " + (RefTableau.tab.GetUpperBound(1) + 1) + " " + Tour.nbTours);
-        }
 
         public static void AjoutAuFichier()
         {
-            
+            // ici on rempli une liste de string, qui servira a la fin de la simulation à créer le fichier texte
                 foreach (Case ca in RefTableau.tab)
                 {
                     if(ca.fourmis!=null && ca.fourmis.porteSucre)
@@ -68,7 +64,7 @@ namespace Fourmiliere
         }
         public static void AjoutFinDeFichier()
         {
-     
+            // ici on lit chaque lignes de la liste et on les écrit dans le fichier texte
             using (StreamWriter sw = File.CreateText(path))
             {
                 sw.WriteLine((RefTableau.tab.GetUpperBound(0) + 1) + " " + (RefTableau.tab.GetUpperBound(1) + 1) + " " + Tour.nbTours);

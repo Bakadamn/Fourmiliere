@@ -22,14 +22,14 @@ namespace Fourmiliere
         public static int[] posNidStatic = new int[2];
 
       
-        public Tableau()
+        public Tableau() //constructeur par défaut
         {
             RefTableau.tab = new Case[20, 20];
             largeur = 20;
             hauteur = 20;
         }
 
-        public Tableau(int X, int Y)
+        public Tableau(int X, int Y) //constructeur du tableau personnalisé en taille
         {
             RefTableau.tab = new Case[X, Y];
             largeur = X;
@@ -37,7 +37,7 @@ namespace Fourmiliere
         }
 
 
-        public void InitialisationTableau()
+        public void InitialisationTableau() //création de chaque cases du tableau
         {
             for (int i = 0; i < RefTableau.tab.GetLength(0); i++)
             {
@@ -50,7 +50,7 @@ namespace Fourmiliere
             }
         }
 
-        public void InitNid()
+        public void InitNid() // création du nid (placement aléatoire)
         {
             bool estVide = false;
             int rndX = 0;
@@ -81,7 +81,7 @@ namespace Fourmiliere
 
 
     
-        public void InitSucre(int NbrSucre)
+        public void InitSucre(int NbrSucre) // création du sucre (placement aléatoire)
         {
             int rndX = 0;
             int rndY = 0;
@@ -101,7 +101,7 @@ namespace Fourmiliere
             }
         }
 
-        public void InitCailloux(int NbrCailloux)
+        public void InitCailloux(int NbrCailloux) // création du cailloux (placement aléatoire)
         {
             int rndX = 0;
             int rndY = 0;
@@ -121,10 +121,10 @@ namespace Fourmiliere
         }
 
 
-        public void InitFourmis(int fourmis)
+        public void InitFourmis() // création et placement alétoire des fourmis autour du nid
         {
             List<int[]> posPossible = new List<int[]>();
-
+            //liste (ci dessus) qui contient tout les points autour du nid (ajoutés ci dessous)
                 
             posPossible.Add(CaisseAOut.DeuxValeurEnTableau(posNid[0] - 1, posNid[1] - 1));
             posPossible.Add(CaisseAOut.DeuxValeurEnTableau(posNid[0] +2, posNid[1] +2));
@@ -138,9 +138,9 @@ namespace Fourmiliere
             }
             
 
-           
+           //randomisation tant qu'une case valide n'a pas été selectionnée dans la liste
             if(posPossible.Count()>0)
-            for(; ; )
+            for(; ;)
             {
                 int rndCase = rnd.Next(1, posPossible.Count());
                 rndCase--;
@@ -152,10 +152,9 @@ namespace Fourmiliere
                         return;
                     }
             }
-
         }
 
-        public void InitPhero(int X, int Y)
+        public void InitPhero(int X, int Y) //ici on rajoute tout les phéromones de nid en fonction de leurs distance du nid 
         {
             int decalage = 3;
             int test = 0;
@@ -174,7 +173,8 @@ namespace Fourmiliere
             }
 
 
-
+            // on fait le tour du nid en remplissant chaque case avec le nombre de phéromone correspondant à i ,
+            // a chaque itération on s'éloigne d'une case tout en continuant de faire le tour du nid
             for (int i = test; i > -1; i--)
             {
                 int Xactuel = X - ((test + 1) - i); // - 1, 2, 3, 4

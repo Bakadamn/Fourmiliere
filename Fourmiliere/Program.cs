@@ -9,7 +9,7 @@ namespace Fourmiliere
         [STAThread]
         static void Main(string[] args)
         {
-
+            //on propose une liste de choix à l'utilisateur
             Console.WriteLine("Choisissez une méthode de génération (tapez le chiffre puis entrer): \n"+
                 "1.Créer la simulation et l'afficher dans un navigateur web\n" +
                 "2.Créer la simulation et l'afficher dans la console\n" +
@@ -19,7 +19,7 @@ namespace Fourmiliere
 
             
 
-
+          
             if (reponse == 3)
                 FichierTxt.ChoixFolderFichierTxt();
             else
@@ -33,7 +33,7 @@ namespace Fourmiliere
             int nombreFourmis;
             int nombreSucre;
             int nombreCailloux;
-            if (generation == 1)
+            if (generation == 1) // si carte par défaut
             {
                 tailleX = 20;
                 tailleY = 20;
@@ -41,7 +41,7 @@ namespace Fourmiliere
                 nombreSucre = 10;
                 nombreCailloux = 10;
             }
-            else
+            else // si carte personnalisée par l'utilisateur
             {
                 Console.WriteLine("\n\nDefinissez la taille de la carte puis tapez entrer (par défaut 20x20 conseillé)\n" +
                     "Nombre de case (largeur) (minimum 10, maximum 100) : ");
@@ -59,17 +59,18 @@ namespace Fourmiliere
             bool GenerationConsole = false;
 
 
-            RefTableau.classeTableau = new Tableau(tailleX,tailleY);
 
-           //Console.SetWindowSize(RefTableau.tab.GetLength(1)*3+1, RefTableau.tab.GetLength(0)*2+3);
+            //Création du tableau et remplissage en fonction des parametres définis au dessus
+
+            RefTableau.classeTableau = new Tableau(tailleX,tailleY);
             RefTableau.classeTableau.InitialisationTableau();
             RefTableau.classeTableau.InitNid();
             RefTableau.classeTableau.InitPhero(RefTableau.classeTableau.posNid[0], RefTableau.classeTableau.posNid[1]);
             RefTableau.classeTableau.InitSucre(nombreSucre);
             RefTableau.classeTableau.InitCailloux(nombreCailloux);
-            RefTableau.classeTableau.InitFourmis(1);
+            RefTableau.classeTableau.InitFourmis();
 
-            if(reponse == 2)
+            if(reponse == 2) // si laffichage console est activé
             {
                 GenerationConsole = true;
                 string affichage = "";
@@ -79,17 +80,17 @@ namespace Fourmiliere
                 Console.ReadKey();
             }
 
-            FichierTxt.creationFichierTxt();  //mis en commentaire pour dev
+           /// FichierTxt.creationFichierTxt();  //mis en commentaire pour dev
 
-            Tour.TourDeJeu(GenerationConsole, nombreFourmis);
+            Tour.TourDeJeu(GenerationConsole, nombreFourmis); // on lance les tours de jeux
 
 
-            if(reponse == 1)
+            if(reponse == 1) // si lancement par url 
             Start();
         }
 
 
-        static int ChoixParametres(int minimum, int maximum)
+        static int ChoixParametres(int minimum, int maximum) // fonction qui demande a l'utilisateur une valeur entre un minimum et un maximum en console
         {
             int result;
             do
@@ -116,7 +117,7 @@ namespace Fourmiliere
             Process.Start("https://localhost/Fourmiliere/index.php");
         }
 
-        public static string affichGrille(string affichage)
+        public static string affichGrille(string affichage) // fonction qui affiche la grille a chaque tour sur la console en couleur
         {
 
             for (int i = 0; i < RefTableau.tab.GetLength(0); i++)

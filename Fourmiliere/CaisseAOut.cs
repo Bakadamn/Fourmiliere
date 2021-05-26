@@ -1,8 +1,5 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Fourmiliere
 {
@@ -56,7 +53,7 @@ namespace Fourmiliere
                 return false;
         }
 
-        public static List<Case> CasesAlentours(int x, int y) //retourne la liste des cases entourant la fourmi
+        public static List<Case> CasesAlentours(int x, int y) //retourne la liste des cases qui entourent la fourmi
         {
             List<Case> liste = new List<Case>();
 
