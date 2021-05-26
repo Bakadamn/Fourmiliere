@@ -10,9 +10,9 @@ namespace Fourmiliere
     {
         public static int nbTours = 0;
 
-        public static void TourDeJeu(bool ecritureConsole)
+        public static void TourDeJeu(bool ecritureConsole, int fourmisMaximum)
         {
-            while(MapContientSucre() && nbTours<1000)
+            while(MapContientSucre() && nbTours<500)
             {
                 foreach (Case ca in RefTableau.tab)
                 {
@@ -50,7 +50,7 @@ namespace Fourmiliere
                 }
 
                 nbTours++;
-                if (nbTours % 2 == 0 && Fourmis.nbrFourmis<20)
+                if (nbTours % 2 == 0 && Fourmis.nbrFourmis<fourmisMaximum)
                     RefTableau.classeTableau.InitFourmis(1);
 
                 FichierTxt.AjoutAuFichier();  //en commentaire pour dev

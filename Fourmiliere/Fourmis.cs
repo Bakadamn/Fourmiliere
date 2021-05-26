@@ -243,6 +243,10 @@ namespace Fourmiliere
                 RefTableau.tab[caseFourmi.X, caseFourmi.Y].fourmis = null;
                 caseFourmi = RefTableau.tab[x, y];
             }
+            else
+            {
+                pheroSucreVal += 2;
+            }
 
         }
 
